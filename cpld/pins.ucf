@@ -1,0 +1,44 @@
+NET "CLK" TNM_NET = CLK1MHZ;
+TIMESPEC TS_CLK_1Mhz = PERIOD "CLK_1MHZ" 1000ns;
+NET "CLK50MHZ" TNM_NET = CLK50MHZ;
+TIMESPEC TS_CLK_50Mhz = PERIOD "CLK_50MHZ" 20ns;
+
+#PINLOCK_BEGIN
+#Wed Jun 23 17:42:46 2021
+
+NET "clk"            LOC =  "S:PIN22";
+NET "CB"             LOC =  "S:PIN81";
+NET "COL<0>"         LOC =  "S:PIN82";
+NET "COL<1>"         LOC =  "S:PIN85";
+NET "COL<2>"         LOC =  "S:PIN86";
+NET "COL<3>"         LOC =  "S:PIN87";
+NET "ROW<0>"         LOC =  "S:PIN89";
+NET "ROW<1>"         LOC =  "S:PIN90";
+NET "ROW<2>"         LOC =  "S:PIN91";
+NET "W"              LOC =  "S:PIN12";
+NET "CA2"            LOC =  "S:PIN93";
+
+NET "ps2_clk"        LOC =  "S:PIN1";
+NET "ps2_data"       LOC =  "S:PIN2";
+
+NET "dbgleds<0>"     LOC =  "S:PIN49";
+NET "dbgleds<1>"     LOC =  "S:PIN46";
+NET "dbgleds<2>"     LOC =  "S:PIN43";
+NET "dbgleds<3>"     LOC =  "S:PIN42";
+NET "dbgleds<4>"     LOC =  "S:PIN41";
+NET "dbgleds<5>"     LOC =  "S:PIN40";
+NET "dbgleds<6>"     LOC =  "S:PIN39";
+NET "dbgleds<7>"     LOC =  "S:PIN37";
+NET "dbgleds<8>"     LOC =  "S:PIN36";
+NET "dbgleds<9>"     LOC =  "S:PIN35";
+
+NET "startupOptions<0>"     LOC =  "S:PIN50";
+NET "startupOptions<1>"     LOC =  "S:PIN52";
+NET "startupOptions<2>"     LOC =  "S:PIN53";
+NET "startupOptions<3>"     LOC =  "S:PIN54";
+NET "startupOptions<4>"     LOC =  "S:PIN55";
+NET "startupOptions<5>"     LOC =  "S:PIN56";
+NET "startupOptions<6>"     LOC =  "S:PIN58";
+NET "startupOptions<7>"     LOC =  "S:PIN59";
+
+#PINLOCK_END
