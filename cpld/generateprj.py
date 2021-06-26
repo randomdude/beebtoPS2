@@ -9,8 +9,12 @@ testFiles = []
 
 for filetag in root.findall('{http://www.xilinx.com/XMLSchema}files/{http://www.xilinx.com/XMLSchema}file'):
 	filename = filetag.attrib['{http://www.xilinx.com/XMLSchema}name']
+	fileType = filetag.attrib['{http://www.xilinx.com/XMLSchema}type']
+	if fileType != 'FILE_VHDL':
+		continue
 	for assoctag in filetag.findall('{http://www.xilinx.com/XMLSchema}association'):
 		assoc = assoctag.attrib['{http://www.xilinx.com/XMLSchema}name']
+		
 		if assoc == 'Implementation':
 			implFiles.append("vhdl work \"" + filename + "\"")
 		elif assoc == 'BehavioralSimulation':
