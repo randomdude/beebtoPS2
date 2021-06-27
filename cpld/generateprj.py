@@ -26,6 +26,8 @@ for filetag in root.findall('{http://www.xilinx.com/XMLSchema}files/{http://www.
 			raise Exception("Unrecognised file association '" + assoc + "'")
 
 for testfile in testFiles:
+	if testfile in implFiles:
+		continue
 	# Create a .prj file, containing all the implementation files plus this simulation file.
 	with open(testfile + '.prj', 'w') as f:
 		for implFile in implFiles:
