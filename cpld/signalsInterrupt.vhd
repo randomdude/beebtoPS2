@@ -6,8 +6,6 @@ END signalsInterrupt;
  
 ARCHITECTURE behavior OF signalsInterrupt IS 
  
-    -- Component Declaration for the Unit Under Test (UUT)
- 
     COMPONENT kb
     PORT(
          ROW : IN  std_logic_vector(2 downto 0);
@@ -16,11 +14,12 @@ ARCHITECTURE behavior OF signalsInterrupt IS
          W : OUT  std_logic;
          CB : IN  std_logic;
          RST : OUT  std_logic;
-			dbgbtn: in  STD_LOGIC;
 			
-         clk : IN  std_logic;
-			clk50mhz : in  STD_LOGIC;
-         rs232in : IN  std_logic
+			startupOptions: in STD_LOGIC_VECTOR(7 downto 0);
+			
+         beeb_clk : IN  std_logic;
+         ps2_clk  : IN  std_logic;
+         ps2_data : IN  std_logic
         );
     END COMPONENT;
     
@@ -29,9 +28,10 @@ ARCHITECTURE behavior OF signalsInterrupt IS
    signal ROW : std_logic_vector(2 downto 0) := (others => '0');
    signal COL : std_logic_vector(3 downto 0) := (others => '0');
    signal CB : std_logic := '0';
-   signal clk : std_logic := '0';
-   signal clk50mhz  : std_logic := '0';
-   signal rs232in : std_logic := '0';
+	signal startupOptions: STD_LOGIC_VECTOR(7 downto 0);
+   signal beeb_clk  : std_logic := '0';
+   signal ps2_clk : std_logic := '0';
+   signal ps2_data: std_logic := '0';
 
  	--Outputs
    signal CA2 : std_logic;
@@ -40,8 +40,7 @@ ARCHITECTURE behavior OF signalsInterrupt IS
 
    -- Clock period definitions
    constant clk_period : time := (1000 ms / 1000000);
-   constant clk50_period : time := (1000 ms / 50000000);
- 
+   constant ps2_clk_period : time := 100 ns;
  
 	signal sawInterrupt: integer;
 BEGIN
@@ -54,30 +53,23 @@ BEGIN
           W => W,
           CB => CB,
           RST => RST,
-			 dbgbtn => '0',
+			 startupOptions => startupOptions,
 			 
-          clk => clk,
-			 clk50mhz => clk50mhz,
-          rs232in => rs232in
+          beeb_clk => beeb_clk,
+			 ps2_clk  => ps2_clk,
+			 ps2_data => ps2_data
         );
 
    clk_process :process
    begin
-		clk <= '0'; wait for clk_period/2;
-		clk <= '1'; wait for clk_period/2;
+		beeb_clk <= '0'; wait for clk_period/2;
+		beeb_clk <= '1'; wait for clk_period/2;
    end process;
-
-   clk50_process :process
-   begin
-		clk50mhz  <= '0'; wait for clk50_period/2;
-		clk50mhz  <= '1'; wait for clk50_period/2;
-   end process;
- 
 
    -- Stimulus process
    stim_proc: process
    begin
-		rs232in <= '1';
+		ps2_clk <= '1';
 		
 		-- When CB is high, we're in free-scanning mode. Row and column should be ignored.
 		ROW <= (others => 'X');
@@ -88,19 +80,26 @@ BEGIN
 		assert CA2 = '0' severity FAILURE; 
 		
 		-- Now press a key.
-		rs232in <= '0'; wait for 1000 ms / 9600;
+		-- idle the line
+		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;	
 
-		rs232in <= '0'; wait for 1000 ms / 9600;
-		rs232in <= '0'; wait for 1000 ms / 9600;
-		rs232in <= '0'; wait for 1000 ms / 9600;
-		rs232in <= '1'; wait for 1000 ms / 9600;
-		rs232in <= '0'; wait for 1000 ms / 9600;
-		rs232in <= '0'; wait for 1000 ms / 9600;
-		rs232in <= '0'; wait for 1000 ms / 9600;
-		rs232in <= '1'; wait for 1000 ms / 9600;
-		
-		rs232in <= '1'; wait for 1000 ms / 9600;
-		
+		-- start bit
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+
+		-- data bits
+		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+
+		-- Parity and stop bit
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+
 		-- We should see an interrupt within 16 clock cycles.
 		sawInterrupt <= 0;
 		for i in 0 to 16 loop
