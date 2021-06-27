@@ -9,7 +9,10 @@ parallel(
 
 			def rootDir = pwd()
 			def kicadSupport = load "${rootDir}\\build.groovy"
-			kicadSupport.build("http://gitea/aliz/beebToPS2.git")
+			dir('board')
+			{
+				kicadSupport.build("http://gitea/aliz/beebToPS2.git")
+			}
 		}
 	},
 	'gateware' : 
