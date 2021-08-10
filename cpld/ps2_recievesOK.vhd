@@ -8,16 +8,19 @@ ARCHITECTURE behavior OF ps2_recievesOK IS
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT ps2ToBeeb
-    PORT(
-         ps2_clk : IN  std_logic;
-         ps2_data : IN  std_logic;
-         beeb_clk : IN  std_logic;
-         beeb_row : OUT  std_logic_vector(2 downto 0);
-         beeb_col : OUT  std_logic_vector(3 downto 0);
-         beeb_keydown : OUT  std_logic
-        );
-    END COMPONENT;
+	COMPONENT ps2ToBeeb
+	PORT(
+		ps2_clk : IN std_logic;
+		ps2_data : IN std_logic;
+		beeb_clk : IN std_logic;          
+		beeb_row : OUT std_logic_vector(2 downto 0);
+		beeb_col : OUT std_logic_vector(3 downto 0);
+		beeb_keydown : OUT std_logic;
+		beeb_shiftState : OUT std_logic;
+		beeb_ctrlState : OUT std_logic;
+		dbgleds : OUT std_logic_vector(3 downto 0)
+		);
+	END COMPONENT;
     
 
    --Inputs
@@ -30,8 +33,7 @@ ARCHITECTURE behavior OF ps2_recievesOK IS
    signal beeb_col : std_logic_vector(3 downto 0);
    signal beeb_keydown : std_logic;
 
-   constant beeb_clk_period : time := 10 ns;
-   constant ps2_clk_period : time := 100 ns;
+   constant beeb_clk_period : time := 20 ns;
  
 BEGIN
  
@@ -58,63 +60,44 @@ BEGIN
    stim_proc: process
    begin		
 		-- idle the line
-		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;	
+		ps2_clk <= '1'; ps2_data <= '1';
+		
+		-- Send a space, as captured from keyboard hardware
+		wait for 4490.000000 ns; ps2_data <= '0';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '1';
+		wait for 140.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '0';
+		wait for 160.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 380.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '1';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '0';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '1';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '0';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 390.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 380.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 240.000000 ns;  ps2_data <= '1';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
 
-		-- start bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-
-		-- data bits
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-
-		-- Parity and stop bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-
+		-- We should see this key pressed.
 		assert beeb_keydown = '1' severity FAILURE;		
-		assert beeb_row = "010" severity FAILURE;		
-		assert beeb_col = "0111" severity FAILURE;		
-
-		-- idle the line
-		ps2_clk <= '1'; ps2_data <= '1'; wait for 60 us;	
-		-- start bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		-- data bits
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		-- Parity and stop bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		-- idle the line
-		ps2_clk <= '1'; ps2_data <= '1'; wait for 60 us;	
-		-- start bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		-- data bits
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		-- Parity and stop bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-
-		assert beeb_keydown = '0' severity FAILURE;
+		assert beeb_row = "110" severity FAILURE;		
+		assert beeb_col = "0010" severity FAILURE;		
 
 		report "all OK" severity FAILURE;
    end process;
