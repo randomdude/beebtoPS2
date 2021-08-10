@@ -81,8 +81,6 @@ BEGIN
 		assert beeb_row = "010" severity FAILURE;		
 		assert beeb_col = "0111" severity FAILURE;		
 
-		report "testing Jenkins!" severity FAILURE;
-
 		-- idle the line
 		ps2_clk <= '1'; ps2_data <= '1'; wait for 60 us;	
 		-- start bit
