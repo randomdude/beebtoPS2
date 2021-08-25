@@ -225,17 +225,6 @@ F 3 "" H 2550 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR09
-U 1 1 60D5AE5F
-P 9200 5000
-F 0 "#PWR09" H 9200 4850 50  0001 C CNN
-F 1 "+5V" H 9215 5173 50  0000 C CNN
-F 2 "" H 9200 5000 50  0001 C CNN
-F 3 "" H 9200 5000 50  0001 C CNN
-	1    9200 5000
-	1    0    0    -1  
-$EndComp
-$Comp
 L LED:HDSP-4830_2 BAR1
 U 1 1 60D5B5EC
 P 8200 1700
@@ -1223,4 +1212,24 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 10100 1050 50  0001 C CNN
 	1    10100 1050
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 6125C392
+P 9150 4950
+F 0 "#PWR?" H 9150 4800 50  0001 C CNN
+F 1 "+3V3" H 9165 5123 50  0000 C CNN
+F 2 "" H 9150 4950 50  0001 C CNN
+F 3 "" H 9150 4950 50  0001 C CNN
+	1    9150 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 5000 9100 4950
+Wire Wire Line
+	9100 4950 9150 4950
+Wire Wire Line
+	9200 5000 9200 4950
+Wire Wire Line
+	9200 4950 9150 4950
+Connection ~ 9150 4950
 $EndSCHEMATC
