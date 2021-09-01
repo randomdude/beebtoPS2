@@ -1,0 +1,39 @@
+NET "beeb_clk" TNM_NET = CLK1MHZ;
+TIMESPEC TS_CLK_1Mhz = PERIOD "CLK1MHZ" 1000ns;
+# NET "CLK50MHZ" TNM_NET = CLK50MHZ;
+#TIMESPEC TS_CLK_50Mhz = PERIOD "CLK50MHZ" 20ns;
+
+NET "beeb_clk"       LOC =  "PIN22";
+NET "CB"             LOC =  "PIN81";
+NET "COL<0>"         LOC =  "PIN82";
+NET "COL<1>"         LOC =  "PIN85";
+NET "COL<2>"         LOC =  "PIN86";
+NET "COL<3>"         LOC =  "PIN87";
+NET "ROW<0>"         LOC =  "PIN89";
+NET "ROW<1>"         LOC =  "PIN90";
+NET "ROW<2>"         LOC =  "PIN91";
+NET "W"              LOC =  "PIN12";
+NET "CA2"            LOC =  "PIN93";
+
+NET "ps2_clk"        LOC =  "PIN3";
+NET "ps2_data"       LOC =  "PIN4";
+
+NET "dbgleds<0>"     LOC =  "PIN49";
+NET "dbgleds<1>"     LOC =  "PIN46";
+NET "dbgleds<2>"     LOC =  "PIN43";
+NET "dbgleds<3>"     LOC =  "PIN42";
+NET "dbgleds<4>"     LOC =  "PIN41";
+NET "dbgleds<5>"     LOC =  "PIN40";
+NET "dbgleds<6>"     LOC =  "PIN39";
+NET "dbgleds<7>"     LOC =  "PIN37";
+NET "dbgleds<8>"     LOC =  "PIN36";
+NET "dbgleds<9>"     LOC =  "PIN35";
+
+NET "startupOptions<0>"     LOC =  "S:PIN50" | PULLUP;
+NET "startupOptions<1>"     LOC =  "S:PIN52" | PULLUP;
+NET "startupOptions<2>"     LOC =  "S:PIN53" | PULLUP;
+NET "startupOptions<3>"     LOC =  "S:PIN54" | PULLUP;
+NET "startupOptions<4>"     LOC =  "S:PIN55" | PULLUP;
+NET "startupOptions<5>"     LOC =  "S:PIN56" | PULLUP;
+NET "startupOptions<6>"     LOC =  "S:PIN58" | PULLUP;
+NET "startupOptions<7>"     LOC =  "S:PIN59" | PULLUP;

@@ -11,7 +11,7 @@ entity ps2ToBeeb is
            beeb_keydown : out  STD_LOGIC;
 			  beeb_shiftState : out  STD_LOGIC;
 			  beeb_ctrlState : out  STD_LOGIC;
-			  dbgleds : out  STD_LOGIC_VECTOR (3 downto 0)
+			  dbgleds : out  STD_LOGIC_VECTOR (9 downto 0)
 			  );
 end ps2ToBeeb;
 
@@ -50,7 +50,7 @@ begin
 
 		-- count clocks since a transition occured on the ps/2 clock line
 		if ps2_clk = lastps2clk then
-			if recvTimeout(24) = '0' then
+			if recvTimeout(18) = '0' then
 				recvTimeout <= std_logic_vector(to_unsigned(to_integer(unsigned(recvTimeout )) + 1, 25));
 			end if;
 		else
@@ -59,7 +59,7 @@ begin
 
 		-- If we haven't seen any clock transitions for a long time, reset the bit counter to zero
 		-- thus discarding any bits recieved so far
-		if recvTimeout(24) = '1' then
+		if recvTimeout(18) = '1' then
 			bitCount <= (others => '0');
 		else
 			-- We captured data on the rising edge of the ps2_clk. On the falling edge, we process it.
@@ -82,9 +82,6 @@ begin
 		
 				-- If we have ten bits (start bit, eight data bits, parity, and the stop bit) then we should decode the keystroke.
 				if (bitCount = "1001") then
-					--dbgleds(1) <= controlState;
-					--dbgleds(3 downto 0) <= ps2Input(7 downto 4);
-
 					--bitCount <= 0;
 					
 					if ps2Input(7 downto 0) = x"f0" then

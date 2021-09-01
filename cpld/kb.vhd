@@ -35,7 +35,7 @@ architecture Behavioral of kb is
 		beeb_shiftState : OUT  std_logic;
 		beeb_ctrlState : OUT  std_logic;
 
-		dbgleds: OUT  std_logic_vector(3 downto 0)
+		dbgleds: OUT  std_logic_vector(9 downto 0)
 	  );
 	END COMPONENT;
 
@@ -49,8 +49,9 @@ architecture Behavioral of kb is
 	-- status of modifier keys
 	signal beeb_shiftState: std_logic;
 	signal beeb_ctrlState: std_logic;
+
+	signal led_dummy: std_logic_vector(9 downto 0);
 	
-	signal ps2dbg: std_logic_vector(3 downto 0);
 	signal cnt: std_logic_vector(14 downto 0) := "000000000000000";
 begin
 
@@ -63,22 +64,22 @@ Inst_ps2ToBeeb: ps2ToBeeb PORT MAP (
 		 beeb_keydown => beeb_keydown,
 		 beeb_shiftState => beeb_shiftState,
 		 beeb_ctrlState => beeb_ctrlState,
-		 dbgleds => ps2dbg
+		 dbgleds => led_dummy
 	  );
 	  
 -- Debug LEDs. The first bit is illuminated if a non-modifier key is pressed,
 -- the second and third if shift or ctl is currently pressed, and the remainer
 -- show the current col/row state.
-dbgleds (4 downto 1) <= ps2dbg;
+--dbgleds (4 downto 1) <= ps2dbg;
 --dbgleds(1) <= beeb_keydown;
-dbgleds(9 downto 5) <= "00000";
+--dbgleds(9 downto 5) <= "00000";
 --dbgleds(1) <= beeb_shiftState;
 --dbgleds(2) <= beeb_ctrlState;
 --dbgleds(4 downto 1) <= latchedCol;
 
---dbgleds(9 downto 5) <= "00000";
---dbgleds(9 downto 1) <= cnt(12 downto 4);
-dbgleds(0) <= '0';
+dbgleds(0) <= beeb_ctrlState;
+dbgleds(1) <= beeb_keydown;
+dbgleds(9 downto 2) <= beeb_row & '0' & beeb_col;
 
 process(beeb_clk, CB, COL, ROW, byteIn)
 begin
@@ -115,8 +116,8 @@ begin
 					when "1001" => W <= startupOptions(0);
 					when others => W <= '0';
 				end case;
-			else
-				if latchedCol = beeb_col and ROW = beeb_row and beeb_keydown = '1' then
+			else 
+				if latchedCol = beeb_col and beeb_keydown = '1' then
 					W <= '1';
 				else
 					W <= '0';

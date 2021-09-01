@@ -28,7 +28,7 @@ ARCHITECTURE behavior OF signalsInterrupt IS
    signal ROW : std_logic_vector(2 downto 0) := (others => '0');
    signal COL : std_logic_vector(3 downto 0) := (others => '0');
    signal CB : std_logic := '0';
-	signal startupOptions: STD_LOGIC_VECTOR(7 downto 0);
+	signal startupOptions: STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
    signal beeb_clk  : std_logic := '0';
    signal ps2_clk : std_logic := '0';
    signal ps2_data: std_logic := '0';
@@ -40,7 +40,6 @@ ARCHITECTURE behavior OF signalsInterrupt IS
 
    -- Clock period definitions
    constant clk_period : time := (1000 ms / 1000000);
-   constant ps2_clk_period : time := 100 ns;
  
 	signal sawInterrupt: integer;
 BEGIN
@@ -59,21 +58,26 @@ BEGIN
 			 ps2_clk  => ps2_clk,
 			 ps2_data => ps2_data
         );
-
+		  
+	-- the beeb clock runs at 1mhz constantly
    clk_process :process
    begin
 		beeb_clk <= '0'; wait for clk_period/2;
 		beeb_clk <= '1'; wait for clk_period/2;
    end process;
-
+		  
    -- Stimulus process
    stim_proc: process
    begin
 		ps2_clk <= '1';
 		
 		-- When CB is high, we're in free-scanning mode. Row and column should be ignored.
-		ROW <= (others => 'X');
-		COL <= (others => 'X');
+		COL <= (others => '0');
+		ROW <= (others => '0');
+		CB <= '0';
+		wait for clk_period * 2;
+		COL <= (others => '0');
+		ROW <= (others => '0');
 		CB <= '1';
 		wait for clk_period * 2;
 		-- No keys down means that CA2 should be deasserted.
@@ -83,22 +87,37 @@ BEGIN
 		-- idle the line
 		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;	
 
-		-- start bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-
-		-- data bits
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '1'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-
-		-- Parity and stop bit
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
-		ps2_clk <= '0'; ps2_data <= '0'; wait for ps2_clk_period*2; ps2_clk <= '1'; wait for ps2_clk_period*2;
+		-- Send a space, as captured from keyboard hardware
+		wait for 4490.000000 ns; ps2_data <= '0';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '1';
+		wait for 140.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '0';
+		wait for 160.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 380.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '1';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '0';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '1';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 230.000000 ns;  ps2_data <= '0';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 390.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 380.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
+		wait for 240.000000 ns;  ps2_data <= '1';
+		wait for 150.000000 ns;  ps2_clk <= '0';
+		wait for 390.000000 ns;  ps2_clk <= '1';
 
 		-- We should see an interrupt within 16 clock cycles.
 		sawInterrupt <= 0;
