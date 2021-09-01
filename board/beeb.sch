@@ -25,17 +25,6 @@ F 3 "https://www.xilinx.com/support/documentation/data_sheets/ds056.pdf" H 6250 
 	1    0    0    -1  
 $EndComp
 $Comp
-L Converter_DCDC:OKI-78SR-3.3_1.5-W36-C U5
-U 1 1 60D3A153
-P 10100 1050
-F 0 "U5" H 10100 1292 50  0000 C CNN
-F 1 "7833" H 10100 1201 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-220-3_Horizontal_TabDown" H 10150 800 50  0001 L CIN
-F 3 "https://power.murata.com/data/power/oki-78sr.pdf" H 10100 1050 50  0001 C CNN
-	1    10100 1050
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector:AVR-JTAG-10 J2
 U 1 1 60D3C0DA
 P 9200 5600
@@ -233,17 +222,6 @@ F 1 "ps2" H 2250 3034 50  0000 C CNN
 F 2 "thirdparty:Connector_Mini-DIN_Female_6Pin_2rows" H 2550 2550 50  0001 C CNN
 F 3 "" H 2550 2550 50  0001 C CNN
 	1    2250 2850
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR09
-U 1 1 60D5AE5F
-P 9200 5000
-F 0 "#PWR09" H 9200 4850 50  0001 C CNN
-F 1 "+5V" H 9215 5173 50  0000 C CNN
-F 2 "" H 9200 5000 50  0001 C CNN
-F 3 "" H 9200 5000 50  0001 C CNN
-	1    9200 5000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -719,7 +697,7 @@ Wire Wire Line
 	6350 1000 6350 850 
 Connection ~ 6350 850 
 Wire Wire Line
-	6350 850  6450 850 
+	6350 850  6400 850 
 $Comp
 L power:+3V3 #PWR0103
 U 1 1 60F20AAC
@@ -729,17 +707,6 @@ F 1 "+3V3" H 6065 1023 50  0000 C CNN
 F 2 "" H 6050 850 50  0001 C CNN
 F 3 "" H 6050 850 50  0001 C CNN
 	1    6050 850 
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0104
-U 1 1 60F215FC
-P 6450 850
-F 0 "#PWR0104" H 6450 700 50  0001 C CNN
-F 1 "+5V" H 6465 1023 50  0000 C CNN
-F 2 "" H 6450 850 50  0001 C CNN
-F 3 "" H 6450 850 50  0001 C CNN
-	1    6450 850 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1220,4 +1187,49 @@ Text Label 3350 3950 0    50   ~ 0
 USB_N
 Text Label 3350 4050 0    50   ~ 0
 USB_P
+$Comp
+L power:+3V3 #PWR0104
+U 1 1 6124D12C
+P 6400 850
+F 0 "#PWR0104" H 6400 700 50  0001 C CNN
+F 1 "+3V3" H 6415 1023 50  0000 C CNN
+F 2 "" H 6400 850 50  0001 C CNN
+F 3 "" H 6400 850 50  0001 C CNN
+	1    6400 850 
+	1    0    0    -1  
+$EndComp
+Connection ~ 6400 850 
+Wire Wire Line
+	6400 850  6450 850 
+$Comp
+L Regulator_Linear:LM1117-3.3 U5
+U 1 1 6124DC51
+P 10100 1050
+F 0 "U5" H 10100 1292 50  0000 C CNN
+F 1 "LM1117-3.3" H 10100 1201 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Horizontal_TabDown" H 10100 1050 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 10100 1050 50  0001 C CNN
+	1    10100 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 6125C392
+P 9150 4950
+F 0 "#PWR?" H 9150 4800 50  0001 C CNN
+F 1 "+3V3" H 9165 5123 50  0000 C CNN
+F 2 "" H 9150 4950 50  0001 C CNN
+F 3 "" H 9150 4950 50  0001 C CNN
+	1    9150 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 5000 9100 4950
+Wire Wire Line
+	9100 4950 9150 4950
+Wire Wire Line
+	9200 5000 9200 4950
+Wire Wire Line
+	9200 4950 9150 4950
+Connection ~ 9150 4950
 $EndSCHEMATC
