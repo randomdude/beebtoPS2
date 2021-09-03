@@ -19,7 +19,7 @@ end ps2ToBeeb;
 architecture Behavioral of ps2ToBeeb is
 	signal bitCount: std_logic_vector(3 downto 0) := "0000";
 	signal ps2Input: std_logic_vector(7 downto 0) := "00000000";
-	signal recvTimeout: std_logic_vector(26 downto 0) := (others => '1');
+	signal recvTimeout: std_logic_vector(26 downto 0) := (others => '0');
 	signal willReleaseNext: std_logic := '0';
 
 	-- Store state of modifier keys
@@ -27,8 +27,10 @@ architecture Behavioral of ps2ToBeeb is
 	signal controlState:  std_logic := '0';
 
 	signal lastps2clk:  std_logic := '0';
+	signal lastps2clkA:  std_logic := '0';
 	
 	signal ps2BitA: std_logic := '0';
+	signal ps2BitB: std_logic := '0';
 	signal ps2Bit: std_logic := '0';
 begin
 
@@ -37,11 +39,10 @@ begin
 	--	Capture a bit on ps2_clk rising edge..
 	if rising_edge(ps2_clk) then
 		ps2BitA <= ps2_data;
-		ps2Bit <= ps2BitA;
 	end if;
 end process;
  
-process(fast_clk, beeb_clk)
+process(fast_clk, beeb_clk, recvTimeout, lastps2clk, ps2_clk)
 begin
 
 	--dbgleds(0) <= recvTimeout(26);
@@ -49,12 +50,15 @@ begin
 	--dbgleds(3 downto 0) <= bitCount;
 
 	if rising_edge(fast_clk) then
-		lastps2clk <= ps2_clk;
+		ps2BitB <= ps2BitA;
+		ps2Bit  <= ps2BitB;
+		lastps2clkA <= ps2_clk;
+		lastps2clk <= lastps2clkA;
 
 		-- count clocks since a transition occured on the ps/2 clock line
-		if ps2_clk = lastps2clk then
+		if lastps2clkA = lastps2clk then
 			if recvTimeout(18) = '0' then
-				recvTimeout <= std_logic_vector(to_unsigned(to_integer(unsigned(recvTimeout )) + 1, 25));
+				recvTimeout <= std_logic_vector(to_unsigned(to_integer(unsigned(recvTimeout )) + 1, 27));
 			end if;
 		else
 			recvTimeout <= (others => '0');
@@ -66,7 +70,7 @@ begin
 			bitCount <= (others => '0');
 		else
 			-- We captured data on the rising edge of the ps2_clk. On the falling edge, we process it.
-			if ps2_clk = '0' and lastps2clk = '1' then
+			if lastps2clkA = '0' and lastps2clk = '1' then
 				-- transfer the bit out of the ps2clk-domain register
 				ps2Input <= ps2bit & ps2Input(7 downto 1);
 				 

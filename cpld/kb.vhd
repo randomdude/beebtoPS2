@@ -17,7 +17,7 @@ entity kb is
 
 			  startupOptions: in STD_LOGIC_VECTOR(7 downto 0);
 
-			  fast_clk : in  STD_LOGIC;
+--			  fast_clk : in  STD_LOGIC;
 			  beeb_clk : in  STD_LOGIC;
 			  ps2_clk: in STD_LOGIC;
 			  ps2_data: in STD_LOGIC
@@ -42,8 +42,6 @@ architecture Behavioral of kb is
 	END COMPONENT;
 
 	signal latchedCol: std_logic_vector(3 downto 0) := "0000";
-	signal byteIn: std_logic_vector(7 downto 0);
-	signal bitCount: std_logic_vector(10 downto 0) := "10000000000";
 
 	signal beeb_row: std_logic_vector(2 downto 0);
 	signal beeb_col: std_logic_vector(3 downto 0);
@@ -54,7 +52,6 @@ architecture Behavioral of kb is
 
 	signal led_dummy: std_logic_vector(9 downto 0);
 	
-	signal cnt: std_logic_vector(14 downto 0) := "000000000000000";
 begin
 
 Inst_ps2ToBeeb: ps2ToBeeb PORT MAP (
@@ -84,11 +81,9 @@ dbgleds(0) <= beeb_ctrlState;
 dbgleds(1) <= beeb_keydown;
 dbgleds(9 downto 2) <= beeb_row & '0' & beeb_col;
 
-process(beeb_clk, CB, COL, ROW, byteIn)
+process(beeb_clk, CB, COL, ROW)
 begin
 	if rising_edge(beeb_clk) then
-		cnt <= cnt + 1;
-
 		if CB = '0' then
 			-- IC2 (row decoder) is enabled, IC1 (row counter) is loaded from keyboard column input lines.
 			latchedCol <= COL;
