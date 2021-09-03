@@ -17,6 +17,7 @@ entity kb is
 
 			  startupOptions: in STD_LOGIC_VECTOR(7 downto 0);
 
+			  fast_clk : in  STD_LOGIC;
 			  beeb_clk : in  STD_LOGIC;
 			  ps2_clk: in STD_LOGIC;
 			  ps2_data: in STD_LOGIC
@@ -26,7 +27,8 @@ architecture Behavioral of kb is
 
 	COMPONENT ps2ToBeeb
 	PORT(
-		ps2_clk : IN  std_logic;
+		fast_clk : IN  std_logic;
+		ps2_clk  : IN  std_logic;
 		ps2_data : IN  std_logic;
 		beeb_clk : IN  std_logic;
 		beeb_row : OUT  std_logic_vector(2 downto 0);
@@ -58,6 +60,7 @@ begin
 Inst_ps2ToBeeb: ps2ToBeeb PORT MAP (
 		 ps2_clk => ps2_clk,
 		 ps2_data => ps2_data,
+		 fast_clk => startupOptions(6),
 		 beeb_clk => beeb_clk ,
 		 beeb_row => beeb_row,
 		 beeb_col => beeb_col,
