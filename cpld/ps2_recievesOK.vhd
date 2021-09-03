@@ -1,12 +1,13 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
+
+library work;
+use work.testVectors.all;
  
 ENTITY ps2_recievesOK IS
 END ps2_recievesOK;
  
 ARCHITECTURE behavior OF ps2_recievesOK IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
  
 	COMPONENT ps2ToBeeb
 	PORT(
@@ -21,7 +22,6 @@ ARCHITECTURE behavior OF ps2_recievesOK IS
 		dbgleds : OUT std_logic_vector(3 downto 0)
 		);
 	END COMPONENT;
-    
 
    --Inputs
    signal ps2_clk : std_logic := '0';
@@ -33,29 +33,23 @@ ARCHITECTURE behavior OF ps2_recievesOK IS
    signal beeb_col : std_logic_vector(3 downto 0);
    signal beeb_keydown : std_logic;
 
-   constant beeb_clk_period : time := 20 ns;
- 
+   constant beeb_clk_period : time := 1000 ns;
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: ps2ToBeeb PORT MAP (
-          ps2_clk => ps2_clk,
-          ps2_data => ps2_data,
-          beeb_clk => beeb_clk,
-          beeb_row => beeb_row,
-          beeb_col => beeb_col,
+          ps2_clk => ps2_clk, ps2_data => ps2_data, beeb_clk => beeb_clk,
+          beeb_row => beeb_row, beeb_col => beeb_col,
           beeb_keydown => beeb_keydown
         );
 
+	-- The 1MHz clock the beeb provides
    beeb_clk_process :process
    begin
-		beeb_clk <= '0';
-		wait for beeb_clk_period/2;
-		beeb_clk <= '1';
-		wait for beeb_clk_period/2;
+		beeb_clk <= '0'; wait for beeb_clk_period/2;
+		beeb_clk <= '1'; wait for beeb_clk_period/2;
    end process;
  
-
    -- Stimulus process
    stim_proc: process
    begin		
@@ -63,36 +57,7 @@ BEGIN
 		ps2_clk <= '1'; ps2_data <= '1';
 		
 		-- Send a space, as captured from keyboard hardware
-		wait for 4490.000000 ns; ps2_data <= '0';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '1';
-		wait for 140.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '0';
-		wait for 160.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 380.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '1';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '0';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '1';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '0';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 390.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 380.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 240.000000 ns;  ps2_data <= '1';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
+		work.testVectors.ps2_keydown_spacebar(ps2_clk, ps2_data);
 
 		-- We should see this key pressed.
 		assert beeb_keydown = '1' severity FAILURE;		

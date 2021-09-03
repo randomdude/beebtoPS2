@@ -1,6 +1,9 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
+library work;
+use work.testVectors.all;
+
 ENTITY signalsInterrupt IS
 END signalsInterrupt;
  
@@ -38,25 +41,18 @@ ARCHITECTURE behavior OF signalsInterrupt IS
    signal W : std_logic;
    signal RST : std_logic;
 
-   -- Clock period definitions
-   constant clk_period : time := (1000 ms / 1000000);
+   constant beeb_clk_period : time := 1000 ns;
  
 	signal sawInterrupt: integer;
 BEGIN
  
-	-- Instantiate the Unit Under Test (UUT)
    uut: kb PORT MAP (
-          ROW => ROW,
-          COL => COL,
-          CA2 => CA2,
-          W => W,
-          CB => CB,
-          RST => RST,
+          ROW => ROW, COL => COL,
+          CA2 => CA2, W => W,
+          CB => CB, RST => RST,
 			 startupOptions => startupOptions,
-			 
           beeb_clk => beeb_clk,
-			 ps2_clk  => ps2_clk,
-			 ps2_data => ps2_data
+			 ps2_clk  => ps2_clk, ps2_data => ps2_data
         );
 		  
 	-- the beeb clock runs at 1mhz constantly
@@ -66,7 +62,7 @@ BEGIN
 		beeb_clk <= '1'; wait for clk_period/2;
    end process;
 		  
-   -- Stimulus process
+
    stim_proc: process
    begin
 		ps2_clk <= '1';
@@ -83,41 +79,9 @@ BEGIN
 		-- No keys down means that CA2 should be deasserted.
 		assert CA2 = '0' severity FAILURE; 
 		
-		-- Now press a key.
-		-- idle the line
+		-- Now idle the line, and then press a key.
 		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;	
-
-		-- Send a space, as captured from keyboard hardware
-		wait for 4490.000000 ns; ps2_data <= '0';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '1';
-		wait for 140.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '0';
-		wait for 160.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 380.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '1';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '0';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '1';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 230.000000 ns;  ps2_data <= '0';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 390.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 380.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
-		wait for 240.000000 ns;  ps2_data <= '1';
-		wait for 150.000000 ns;  ps2_clk <= '0';
-		wait for 390.000000 ns;  ps2_clk <= '1';
+		work.testVectors.ps2_keydown_spacebar(ps2_clk_var, ps2_data_var);
 
 		-- We should see an interrupt within 16 clock cycles.
 		sawInterrupt <= 0;
