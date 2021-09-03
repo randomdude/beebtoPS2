@@ -93,7 +93,11 @@ for testfile in testFiles:
 		resStr = resStr + "<failure type=\"" + res + "\">"
 		if os.path.isfile("isim.log"):
 			with open("isim.log", "r") as logfile:
-				resStr = resStr + "\n".join(logfile.readlines())
+				thisResStr = "\n".join(logfile.readlines())
+				thisResStr = thisResStr.replace("&", "&amp;")
+				thisResStr = thisResStr.replace(">", "&gt;")
+				thisResStr = thisResStr.replace("<", "&lt;")
+				resStr = resStr + thisResStr
 		resStr = resStr + "</failure>"
 	resStr = resStr + "</testcase>"
 
