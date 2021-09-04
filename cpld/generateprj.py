@@ -97,6 +97,8 @@ for testfile in testFiles:
 				thisResStr = thisResStr.replace("&", "&amp;")
 				thisResStr = thisResStr.replace(">", "&gt;")
 				thisResStr = thisResStr.replace("<", "&lt;")
+				thisResStr = thisResStr.replace('"', "&quot;")
+				thisResStr = thisResStr.replace("'", "&apos;")
 				resStr = resStr + thisResStr
 		resStr = resStr + "</failure>"
 	resStr = resStr + "</testcase>"
