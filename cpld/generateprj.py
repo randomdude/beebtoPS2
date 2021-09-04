@@ -2,6 +2,14 @@ import xml.etree.ElementTree as ET
 import os
 import subprocess
 
+def xmlescape(toEscape):
+	toEscape = toEscape.replace("&", "&amp;")
+	toEscape = toEscape.replace(">", "&gt;")
+	toEscape = toEscape.replace("<", "&lt;")
+	toEscape = toEscape.replace('"', "&quot;")
+	toEscape = toEscape.replace("'", "&apos;")
+	return toEscape
+
 def runTest(testfile, testname):
 	if os.path.isfile("isim.log"):
 		os.remove("isim.log")
@@ -90,15 +98,12 @@ for testfile in testFiles:
 	resStr = resStr + "<testcase classname=\"ISE\" name=\"" + testname +"\">"
 	if res is not None:
 		res = res.strip()
+		res = xmlescape(res)
 		resStr = resStr + "<failure type=\"" + res + "\">"
 		if os.path.isfile("isim.log"):
 			with open("isim.log", "r") as logfile:
 				thisResStr = "\n".join(logfile.readlines())
-				thisResStr = thisResStr.replace("&", "&amp;")
-				thisResStr = thisResStr.replace(">", "&gt;")
-				thisResStr = thisResStr.replace("<", "&lt;")
-				thisResStr = thisResStr.replace('"', "&quot;")
-				thisResStr = thisResStr.replace("'", "&apos;")
+				thisResStr = xmlescape(thisResStr)
 				resStr = resStr + thisResStr
 		resStr = resStr + "</failure>"
 	resStr = resStr + "</testcase>"
