@@ -2,6 +2,11 @@ import xml.etree.ElementTree as ET
 import os
 import subprocess
 
+class testResult:
+	def __init__(self, shortdesc, longdesc):
+		self.shortdesc = shortdesc
+		self.longdesc = longdesc
+
 def xmlescape(toEscape):
 	toEscape = toEscape.replace("&", "&amp;")
 	toEscape = toEscape.replace(">", "&gt;")
@@ -25,7 +30,7 @@ def runTest(testfile, testname):
 		], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	stdout, stderr = res.communicate()
 	if res.returncode != 0:
-		return "fuse failed\n" + stdout + " " + stderr
+		return testResult("fuse failed", stdout + "\n" + stderr)
 
 	# Generate a file containing tcl commands the simulator will execute
 	with open('isim.cmd', 'w') as f:
@@ -42,16 +47,16 @@ def runTest(testfile, testname):
 	], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	stdout, stderr = res.communicate()
 	if res.returncode != 0:
-		return "simulation failed: " + stdout + " " + stderr
+		return testResult("simulation failed", stdout + "\n" + stderr)
 	# Find any assertions..
 	with open("isim.log", "r") as logfile:
 		loglines = logfile.readlines()
 	asserts = list(filter(lambda x: x.find("** Failure") == 0, loglines ))
 	if len(asserts) == 0:
-		return "No assertions found"
+		return testResult("No assertions found", "\n".join(loglines) )
 	for assertText in asserts:
 		if assertText.strip().lower() != "** Failure:all OK".lower():
-			return "Assert failed: " + assertText
+			return testResult("Assert failed: " + assertText, "\n".join(loglines))
 	
 	return None
 
@@ -79,7 +84,7 @@ for filetag in root.findall('{http://www.xilinx.com/XMLSchema}files/{http://www.
 		else:
 			raise Exception("Unrecognised file association '" + assoc + "'")
 
-resStr = "<testsuites>"
+resStr = "<testsuites>\n"
 
 for testfile in testFiles:
 	if testfile in implFiles:
@@ -95,20 +100,14 @@ for testfile in testFiles:
 	testname = ".".join(testname[:-1])
 
 	res = runTest(testfile, testname)
-	resStr = resStr + "<testcase classname=\"ISE\" name=\"" + testname +"\">"
+	resStr = resStr + "\t<testcase classname=\"ISE\" name=\"" + testname +"\">\n"
 	if res is not None:
-		res = res.strip()
-		res = xmlescape(res)
-		resStr = resStr + "<failure type=\"" + res + "\">"
-		if os.path.isfile("isim.log"):
-			with open("isim.log", "r") as logfile:
-				thisResStr = "\n".join(logfile.readlines())
-				thisResStr = xmlescape(thisResStr)
-				resStr = resStr + thisResStr
-		resStr = resStr + "</failure>"
-	resStr = resStr + "</testcase>"
+		resStr = resStr + "\t\t<failure type=\"" + xmlescape(res.shortdesc.strip()) + "\">"
+		resStr = resStr + xmlescape(res.longdesc.strip())
+		resStr = resStr + "\t\t</failure>\n"
+	resStr = resStr + "\t</testcase>\n"
 
-resStr = resStr + "</testsuites>"
+resStr = resStr + "</testsuites>\n"
 
 with open("results.xml", "w") as f:
 	f.write(resStr)
