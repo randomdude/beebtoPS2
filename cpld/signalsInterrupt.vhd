@@ -20,7 +20,6 @@ ARCHITECTURE behavior OF signalsInterrupt IS
 			
 			startupOptions: in STD_LOGIC_VECTOR(7 downto 0);
 
-         fast_clk : IN  std_logic;
 			
          beeb_clk : IN  std_logic;
          ps2_clk  : IN  std_logic;
@@ -35,7 +34,6 @@ ARCHITECTURE behavior OF signalsInterrupt IS
    signal CB : std_logic := '0';
 	signal startupOptions: STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
 
-   signal fast_clk  : std_logic := '0';
    signal beeb_clk  : std_logic := '0';
    signal ps2_clk : std_logic := '0';
    signal ps2_data: std_logic := '0';
@@ -57,7 +55,7 @@ BEGIN
           CB => CB,
 --			 RST => RST,
 			 startupOptions => startupOptions,
-          beeb_clk => beeb_clk, fast_clk => fast_clk,
+          beeb_clk => beeb_clk,
 			 ps2_clk  => ps2_clk, ps2_data => ps2_data
         );
 		  
@@ -70,8 +68,8 @@ BEGIN
 
    fastclk_process :process
    begin
-		fast_clk <= '0'; wait for fast_clk_period/2;
-		fast_clk <= '1'; wait for fast_clk_period/2;
+		startupOptions(6) <= '0'; wait for fast_clk_period/2;
+		startupOptions(6) <= '1'; wait for fast_clk_period/2;
    end process;
 		  
 
