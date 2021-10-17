@@ -7,6 +7,7 @@ use work.testVectors.all;
 ENTITY signalsInterrupt IS
 END signalsInterrupt;
  
+
 ARCHITECTURE behavior OF signalsInterrupt IS 
  
 	COMPONENT kb
@@ -35,8 +36,7 @@ ARCHITECTURE behavior OF signalsInterrupt IS
 	signal CA2 : std_logic;
 	signal W : std_logic;
 
-	constant beeb_clk_period : time := 1000 ns;
-	constant fast_clk_period : time := 100 ns;
+	constant beeb_clk_period : time := 955 ns;
  
 	signal sawInterrupt: integer;
 BEGIN
@@ -57,15 +57,13 @@ BEGIN
 		beeb_clk <= '1'; wait for beeb_clk_period/2;
 	end process;
 
-	fastclk_process :process
-	begin
-		startupOptions(6) <= '0'; wait for fast_clk_period/2;
-		startupOptions(6) <= '1'; wait for fast_clk_period/2;
-	end process;
-
 	stim_proc: process
 	begin
-		ps2_clk <= '1';
+		-- Idle the PS/2 line
+		ps2_clk <= '1'; ps2_data <= '1';
+
+		-- Wait long enough that our ps2 code resets the ps2 data line
+		wait for beeb_clk_period * 8192;
 		
 		-- When CB is high, we're in free-scanning mode. Row and column should be ignored.
 		COL <= (others => '0');
@@ -77,10 +75,10 @@ BEGIN
 		CB <= '1';
 		wait for beeb_clk_period * 2;
 		-- No keys down means that CA2 should be deasserted.
-		assert CA2 = '0' severity FAILURE; 
+		assert CA2 = '0' report "CA2 not deasserted when no key pressed" severity FAILURE; 
 		
 		-- Now idle the line, and then press a key.
-		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;	
+		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;
 		work.testVectors.ps2_keydown_spacebar(ps2_clk, ps2_data);
 
 		-- We should see an interrupt within 16 clock cycles.
@@ -91,8 +89,23 @@ BEGIN
 				sawInterrupt <= sawInterrupt + 1;
 			end if;
 		end loop;
-		assert sawInterrupt = 1 severity FAILURE;
+		assert sawInterrupt = 1 report "did not see interrupt within 16 clocks of CB going high" severity FAILURE;
 		
+		report "Saw interrupt OK when CB is high";
+		
+		-- Now take CB low. We should see an interrupt when the correct column is set (and only then).
+		CB <= '0';
+		wait for beeb_clk_period * 2;
+		assert CA2 = '0' report "Interrupt asserted when incorrect column present" severity FAILURE; 
+
+		COL <= "0010";	-- this is correct..
+		wait for beeb_clk_period * 2;
+		assert CA2 = '1' report "Interrupt not asserted when correct column present" severity FAILURE; 
+
+		COL <= "1100"; -- this is not the key which is held down.
+		wait for beeb_clk_period * 2;
+		assert CA2 = '0' report "Interrupt asserted when incorrect column present" severity FAILURE; 
+
 		report "all OK" severity FAILURE;
 	end process;
 

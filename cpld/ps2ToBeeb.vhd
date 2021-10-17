@@ -3,8 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
 entity ps2ToBeeb is
-    Port ( fast_clk : in  STD_LOGIC;
-			  ps2_clk : in  STD_LOGIC;
+    Port ( ps2_clk : in  STD_LOGIC;
            ps2_data : in  STD_LOGIC;
            beeb_clk : in  STD_LOGIC;
            beeb_row : out  STD_LOGIC_VECTOR (2 downto 0);
@@ -19,12 +18,14 @@ end ps2ToBeeb;
 architecture Behavioral of ps2ToBeeb is
 	signal bitCount: std_logic_vector(3 downto 0) := "0000";
 	signal ps2Input: std_logic_vector(7 downto 0) := "00000000";
-	signal recvTimeout: std_logic_vector(26 downto 0) := (others => '0');
+	signal recvTimeout: integer := 0;
+--	signal recvTimeout: std_logic_vector(8 downto 0) := (others => '0');
 	signal willReleaseNext: std_logic := '0';
 
 	-- Store state of modifier keys
+	signal keydown:  std_logic := '0';
 	signal shiftState:  std_logic := '0';
-	signal controlState:  std_logic := '0';
+	signal ctrlState:  std_logic := '0';
 
 	signal lastps2clk:  std_logic := '0';
 	signal lastps2clkA:  std_logic := '0';
@@ -42,14 +43,23 @@ begin
 	end if;
 end process;
  
-process(fast_clk, beeb_clk, recvTimeout, lastps2clk, ps2_clk)
+process(beeb_clk, recvTimeout, lastps2clk, ps2_clk, keydown, shiftState, ctrlState, willReleaseNext)
 begin
 
-	--dbgleds(0) <= recvTimeout(26);
+	if recvTimeout = 1024 then
+		dbgleds(0) <= '1';
+	else
+		dbgleds(0) <= '0';
+	end if;
 	--dbgleds(0) <= 
 	--dbgleds(3 downto 0) <= bitCount;
 
-	if rising_edge(fast_clk) then
+	if rising_edge(beeb_clk) then
+		--beeb_beeb_row <= beeb_row;
+		beeb_keydown <= keydown;
+		beeb_shiftState <= shiftState;
+		beeb_ctrlState <= ctrlState;
+
 		ps2BitB <= ps2BitA;
 		ps2Bit  <= ps2BitB;
 		lastps2clkA <= ps2_clk;
@@ -57,17 +67,20 @@ begin
 
 		-- count clocks since a transition occured on the ps/2 clock line
 		if lastps2clkA = lastps2clk then
-			if recvTimeout(18) = '0' then
-				recvTimeout <= std_logic_vector(to_unsigned(to_integer(unsigned(recvTimeout )) + 1, 27));
+			if recvTimeout /= 1024 then
+				recvTimeout <= recvTimeout + 1;
+			--	recvTimeout <= std_logic_vector(to_unsigned(to_integer(unsigned(recvTimeout)) + 1, 9));
 			end if;
 		else
-			recvTimeout <= (others => '0');
+			recvTimeout <= 0;
 		end if;
 
 		-- If we haven't seen any clock transitions for a long time, reset the bit counter to zero
 		-- thus discarding any bits recieved so far
-		if recvTimeout(18) = '1' then
+		if recvTimeout = 1024 then
 			bitCount <= (others => '0');
+--			willReleaseNext <= '0';
+--			keydown <= '0';
 		else
 			-- We captured data on the rising edge of the ps2_clk. On the falling edge, we process it.
 			if lastps2clkA = '0' and lastps2clk = '1' then
@@ -105,19 +118,19 @@ begin
 								shiftState <= '0';
 							elsif ps2Input(7 downto 0) = x"14" then
 								-- ctrl is being released.
-								controlState <= '0';
+								ctrlState <= '0';
 							else
 								-- Just release whatever key we have held down right now.
-								beeb_keydown <= '0';
+								keydown <= '0';
 							end if;
 						else
-							beeb_keydown <= '1';
+							keydown <= '1';
 						
 							case ps2Input(7 downto 0) is
 								-- modifier keys
 								when x"12" => shiftState <= '1'; 	-- Shift (left)
 								when x"59" => shiftState <= '1'; 	-- Shift (right)
-								when x"14" => controlState <= '1';	-- ctrl (left)
+								when x"14" => ctrlState <= '1';	-- ctrl (left)
 
 									-- Digits 0 to 9
 									when x"45" => beeb_row <= "010"; beeb_col <= "0111";
