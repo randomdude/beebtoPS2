@@ -11,15 +11,17 @@ NET "COL<2>"         LOC =  "PIN91";
 NET "COL<3>"         LOC =  "PIN58";
 NET "ROW<0>"         LOC =  "PIN82";
 NET "ROW<1>"         LOC =  "PIN85";
-NET "ROW<2>"         LOC =  "PIN86";
+NET "ROW<2>"         LOC =  "PIN86";	# Moved to 97 on new board
 NET "W"              LOC =  "PIN12";
-NET "W_EN"           LOC =  "PIN1";
+NET "W_EN"           LOC =  "PIN49";	# Moved on new board
 NET "CA2"            LOC =  "PIN93";
 
-NET "ps2_clk"        LOC =  "PIN3";
-NET "ps2_data"       LOC =  "PIN4";
+NET "ps2_a_clk"        LOC =  "PIN3";		# moved to 25 on new board
+NET "ps2_a_data"       LOC =  "PIN4";		# moved to 24 on new board
+NET "ps2_b_clk"        LOC =  "PIN2";
+NET "ps2_b_data"       LOC =  "PIN1";
 
-NET "dbgleds<0>"     LOC =  "PIN49";
+#NET "dbgleds<0>"     LOC =  "PIN49";
 NET "dbgleds<1>"     LOC =  "PIN46";
 NET "dbgleds<2>"     LOC =  "PIN43";
 NET "dbgleds<3>"     LOC =  "PIN42";

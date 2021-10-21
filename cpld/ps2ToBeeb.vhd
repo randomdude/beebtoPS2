@@ -130,48 +130,48 @@ begin
 								-- modifier keys
 								when x"12" => shiftState <= '1'; 	-- Shift (left)
 								when x"59" => shiftState <= '1'; 	-- Shift (right)
-								when x"14" => ctrlState <= '1';	-- ctrl (left)
+								when x"14" => ctrlState <= '1';		-- ctrl (left)
 
-									-- Digits 0 to 9
-									when x"45" => beeb_row <= "010"; beeb_col <= "0111";
-									when x"16" => beeb_row <= "110"; beeb_col <= "0000";
-									when x"1e" => beeb_row <= "110"; beeb_col <= "0001";
-									when x"26" => beeb_row <= "100"; beeb_col <= "0001";
-									when x"25" => beeb_row <= "100"; beeb_col <= "0010";
-									when x"2e" => beeb_row <= "100"; beeb_col <= "0011";
-									when x"36" => beeb_row <= "110"; beeb_col <= "0100";
-									when x"3d" => beeb_row <= "010"; beeb_col <= "0100";
-									when x"3e" => beeb_row <= "100"; beeb_col <= "0101";
-									when x"46" => beeb_row <= "010"; beeb_col <= "0111";
-									-- Letters A-E
-									when x"1C" => beeb_row <= "100"; beeb_col <= "0010";
-									when x"32" => beeb_row <= "110"; beeb_col <= "0100";
-									when x"21" => beeb_row <= "101"; beeb_col <= "0010";
-									when x"23" => beeb_row <= "011"; beeb_col <= "0010";
-									when x"24" => beeb_row <= "010"; beeb_col <= "0010";
-									-- F-J
-									when x"2b" => beeb_row <= "100"; beeb_col <= "0011";
-									when x"34" => beeb_row <= "101"; beeb_col <= "0011";
-									when x"33" => beeb_row <= "101"; beeb_col <= "0100";
-									when x"43" => beeb_row <= "010"; beeb_col <= "0101";
-									when x"3b" => beeb_row <= "100"; beeb_col <= "0101";
-									-- K-O
-									when x"42" => beeb_row <= "100"; beeb_col <= "0110";
-									when x"4b" => beeb_row <= "101"; beeb_col <= "0110";
-									when x"3a" => beeb_row <= "100"; beeb_col <= "0100";
-									when x"31" => beeb_row <= "101"; beeb_col <= "0101";
-									when x"44" => beeb_row <= "011"; beeb_col <= "0110";
-									-- P-T
-									when x"4d" => beeb_row <= "011"; beeb_col <= "0111";
-									when x"15" => beeb_row <= "001"; beeb_col <= "0000";
-									when x"2d" => beeb_row <= "011"; beeb_col <= "0011";
-									when x"1b" => beeb_row <= "101"; beeb_col <= "0001";
-									when x"2c" => beeb_row <= "010"; beeb_col <= "0011";
-									-- U -Y
-									when x"3c" => beeb_row <= "011"; beeb_col <= "0101";
-									when x"2a" => beeb_row <= "110"; beeb_col <= "0011";
-									when x"1d" => beeb_row <= "010"; beeb_col <= "0001";
-									when x"22" => beeb_row <= "100"; beeb_col <= "0010";
+								-- Digits 0 to 9
+								when x"45" => beeb_row <= "101"; beeb_col <= "0111";
+								when x"16" => beeb_row <= "100"; beeb_col <= "0000";
+								when x"1e" => beeb_row <= "100"; beeb_col <= "0001";
+								when x"26" => beeb_row <= "110"; beeb_col <= "0001";
+								when x"25" => beeb_row <= "110"; beeb_col <= "0010";
+								when x"2e" => beeb_row <= "110"; beeb_col <= "0011";
+								when x"36" => beeb_row <= "100"; beeb_col <= "0100";
+								when x"3d" => beeb_row <= "101"; beeb_col <= "0100";
+								when x"3e" => beeb_row <= "110"; beeb_col <= "0101";
+								when x"46" => beeb_row <= "101"; beeb_col <= "0101";
+								-- Letters A-E
+								when x"1C" => beeb_row <= "100"; beeb_col <= "0001";
+								when x"32" => beeb_row <= "110"; beeb_col <= "0100";
+								when x"21" => beeb_row <= "101"; beeb_col <= "0010";
+								when x"23" => beeb_row <= "011"; beeb_col <= "0010";
+								when x"24" => beeb_row <= "010"; beeb_col <= "0010";
+								-- F-J
+								when x"2b" => beeb_row <= "100"; beeb_col <= "0011";
+								when x"34" => beeb_row <= "101"; beeb_col <= "0011";
+								when x"33" => beeb_row <= "101"; beeb_col <= "0100";
+								when x"43" => beeb_row <= "010"; beeb_col <= "0101";
+								when x"3b" => beeb_row <= "100"; beeb_col <= "0101";
+								-- K-O
+								when x"42" => beeb_row <= "100"; beeb_col <= "0110";
+								when x"4b" => beeb_row <= "101"; beeb_col <= "0110";
+								when x"3a" => beeb_row <= "100"; beeb_col <= "0100";
+								when x"31" => beeb_row <= "101"; beeb_col <= "0101";
+								when x"44" => beeb_row <= "011"; beeb_col <= "0110";
+								-- P-T
+								when x"4d" => beeb_row <= "011"; beeb_col <= "0111";
+								when x"15" => beeb_row <= "001"; beeb_col <= "0000";
+								when x"2d" => beeb_row <= "011"; beeb_col <= "0011";
+								when x"1b" => beeb_row <= "101"; beeb_col <= "0001";
+								when x"2c" => beeb_row <= "010"; beeb_col <= "0011";
+								-- U -Y
+								when x"3c" => beeb_row <= "011"; beeb_col <= "0101";
+								when x"2a" => beeb_row <= "110"; beeb_col <= "0011";
+								when x"1d" => beeb_row <= "010"; beeb_col <= "0001";
+								when x"22" => beeb_row <= "100"; beeb_col <= "0010";
 								when x"35" => beeb_row <= "100"; beeb_col <= "0100";
 								-- Z
 								when x"1a" => beeb_row <= "110"; beeb_col <= "0001";
@@ -184,13 +184,19 @@ begin
 								when x"5A" => beeb_row <= "100"; beeb_col <= "1001";	-- Enter
 									
 								-- <>?;@ : ^\
-								when x"66" => beeb_row <= "000"; beeb_col <= "0001";	-- Backspace (should this be mapped to DELETE instead?)
+								when x"66" => beeb_row <= "010"; beeb_col <= "0101";	-- Backspace (should this be mapped to DELETE instead?)
 								--when x"e0 70" => beeb_row <= "000"; beeb_col <= "0001";	-- Insert (mapped to COPY)
-								when x"54" => beeb_row <= "011"; beeb_col <= "1000";	-- [
-								when x"5B" => beeb_row <= "101"; beeb_col <= "1000";	-- ]
-								when x"4C" => beeb_row <= "101"; beeb_col <= "0111";	-- ;
+								when x"54" => beeb_row <= "100"; beeb_col <= "1000";	-- [
+								when x"5B" => beeb_row <= "010"; beeb_col <= "1000";	-- ]
+								when x"4C" => beeb_row <= "101"; beeb_col <= "1000";	-- ;
+								
+								-- Arrow keys
+					--			when x"" => beeb_row <= "111"; beeb_col <= "1001";	-- right
+					--			when x"" => beeb_row <= "110"; beeb_col <= "1001";	-- left
+					--			when x"" => beeb_row <= "101"; beeb_col <= "1001";	-- down
+					--			when x"" => beeb_row <= "100"; beeb_col <= "1001";	-- up
 									
-									-- Function keys
+								-- Function keys
 								when x"05" => beeb_row <= "111"; beeb_col <= "0001";	-- F1
 								when x"06" => beeb_row <= "111"; beeb_col <= "0010";	-- F2
 								when x"04" => beeb_row <= "111"; beeb_col <= "0011";	-- F3

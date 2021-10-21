@@ -23,8 +23,10 @@ entity kb is
 		dbgledenable: OUT std_logic;
 
 		beeb_clk : in  STD_LOGIC;
-		ps2_clk: in STD_LOGIC;
-		ps2_data: in STD_LOGIC
+		ps2_a_clk: in STD_LOGIC;
+		ps2_a_data: in STD_LOGIC;
+		ps2_b_clk: in STD_LOGIC;
+		ps2_b_data: in STD_LOGIC
 	);
 end kb;
 architecture Behavioral of kb is
@@ -45,6 +47,9 @@ architecture Behavioral of kb is
 	END COMPONENT;
 
 	signal latchedCol: std_logic_vector(3 downto 0) := "0000";
+
+	signal ps2_clk: std_logic;
+	signal ps2_data: std_logic;
 
 	signal beeb_row: std_logic_vector(2 downto 0);
 	signal beeb_col: std_logic_vector(3 downto 0);
@@ -77,21 +82,16 @@ dbgledenable <= '1';
 -- Debug LEDs. The first bit is illuminated if a non-modifier key is pressed,
 -- the second and third if shift or ctl is currently pressed, and the remainer
 -- show the current col/row state.
---dbgleds (4 downto 1) <= ps2dbg;
---dbgleds(1) <= beeb_keydown;
---dbgleds(9 downto 5) <= "00000";
---dbgleds(1) <= beeb_shiftState;
---dbgleds(2) <= beeb_ctrlState;
---dbgleds(4 downto 1) <= latchedCol;
-
---dbgleds(0) <= led_dummy(0);
-dbgleds(0) <= ca2_buf;
-dbgleds(1) <= beeb_keydown;
---dbgleds(3) <= '1';
-dbgleds(5 downto 2) <= latchedCol;
+dbgleds(0) <= beeb_keydown;
+dbgleds(1) <= beeb_shiftState;
+dbgleds(2) <= beeb_ctrlState;
+dbgleds(5 downto 3) <= beeb_row;
 dbgleds(9 downto 6) <= beeb_col;
 
 ca2 <= ca2_buf;
+
+ps2_data <= ps2_a_data and ps2_b_data;
+ps2_clk <= ps2_a_clk and ps2_b_clk;
 
 process(beeb_clk, CB, COL, ROW, beeb_keydown, beeb_col, latchedCol)
 begin
