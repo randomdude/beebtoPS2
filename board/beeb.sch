@@ -1344,37 +1344,6 @@ Connection ~ 5950 7250
 Wire Wire Line
 	5950 7250 6350 7250
 $Comp
-L Device:R_POT RV1
-U 1 1 61C9A353
-P 4350 7150
-F 0 "RV1" H 4281 7196 50  0000 R CNN
-F 1 "R_POT" H 4281 7105 50  0000 R CNN
-F 2 "Potentiometer_THT:Potentiometer_Bourns_3386C_Horizontal" H 4350 7150 50  0001 C CNN
-F 3 "~" H 4350 7150 50  0001 C CNN
-	1    4350 7150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4650 6800 4650 6750
-Wire Wire Line
-	4650 7500 4650 7550
-Wire Wire Line
-	4500 7150 4650 7150
-Wire Wire Line
-	4350 7000 4350 6750
-Wire Wire Line
-	4350 6750 4650 6750
-Connection ~ 4650 6750
-Wire Wire Line
-	4650 6750 4650 6700
-Wire Wire Line
-	4350 7300 4350 7550
-Wire Wire Line
-	4350 7550 4650 7550
-Connection ~ 4650 7550
-Wire Wire Line
-	4650 7550 4650 7600
-$Comp
 L Device:R_Small R17
 U 1 1 61E2EEF2
 P 8450 3450
@@ -1658,7 +1627,7 @@ Connection ~ 5300 550
 Wire Wire Line
 	5300 550  5350 550 
 Wire Wire Line
-	2200 1300 2850 1300
+	2300 850  3100 850 
 Wire Wire Line
 	3250 5750 2500 5750
 Text Label 2500 5750 0    50   ~ 0
@@ -1805,4 +1774,53 @@ Wire Wire Line
 	3850 4400 5250 4400
 Wire Wire Line
 	5250 4500 3850 4500
+$Comp
+L Transistor_BJT:BC337 Q1
+U 1 1 61BE02D1
+P 3200 1050
+F 0 "Q1" H 3391 1096 50  0000 L CNN
+F 1 "BC337" H 3391 1005 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3400 975 50  0001 L CIN
+F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf" H 3200 1050 50  0001 L CNN
+	1    3200 1050
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0114
+U 1 1 61BF71ED
+P 3100 1250
+F 0 "#PWR0114" H 3100 1000 50  0001 C CNN
+F 1 "GND" H 3105 1077 50  0000 C CNN
+F 2 "" H 3100 1250 50  0001 C CNN
+F 3 "" H 3100 1250 50  0001 C CNN
+	1    3100 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 1300 2300 1300
+Wire Wire Line
+	2300 1300 2300 850 
+$Comp
+L Device:R_Small R11
+U 1 1 61C551D0
+P 3500 1050
+F 0 "R11" V 3600 1100 50  0000 R CNN
+F 1 "220" V 3400 1150 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 3500 1050 50  0001 C CNN
+F 3 "~" H 3500 1050 50  0001 C CNN
+	1    3500 1050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3600 1050 3900 1050
+Text Label 3900 1050 2    50   ~ 0
+RST
+Wire Wire Line
+	7250 5400 7600 5400
+Text Label 7600 5400 2    50   ~ 0
+RST
+Wire Wire Line
+	4650 6700 4650 6800
+Wire Wire Line
+	4650 7500 4650 7600
 $EndSCHEMATC
