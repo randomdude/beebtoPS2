@@ -956,13 +956,13 @@ U 1 1 614DAB67
 P 10300 2050
 F 0 "U6" H 10300 2367 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 2276 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 2050 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 2050 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 2050 50  0001 C CNN
 	1    10300 2050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10600 2050 11200 2050
+	10600 2050 10950 2050
 Text Label 11200 2050 2    50   ~ 0
 BEEBCLK_BUF
 Wire Wire Line
@@ -975,7 +975,7 @@ U 2 1 615611E5
 P 10300 4200
 F 0 "U6" H 10300 4517 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 4426 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 4200 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 4200 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 4200 50  0001 C CNN
 	2    10300 4200
 	1    0    0    -1  
@@ -986,7 +986,7 @@ U 3 1 61563622
 P 10300 3700
 F 0 "U6" H 10300 4017 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 3926 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 3700 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 3700 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 3700 50  0001 C CNN
 	3    10300 3700
 	1    0    0    -1  
@@ -997,7 +997,7 @@ U 4 1 61564E71
 P 10300 3200
 F 0 "U6" H 10300 3517 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 3426 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 3200 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 3200 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 3200 50  0001 C CNN
 	4    10300 3200
 	1    0    0    -1  
@@ -1032,7 +1032,7 @@ U 5 1 6162D29F
 P 10300 5200
 F 0 "U6" H 10300 5517 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 5426 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 5200 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 5200 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 5200 50  0001 C CNN
 	5    10300 5200
 	1    0    0    -1  
@@ -1064,7 +1064,7 @@ U 6 1 61699E03
 P 10300 5750
 F 0 "U6" H 10300 6067 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 5976 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 5750 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 5750 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 5750 50  0001 C CNN
 	6    10300 5750
 	1    0    0    -1  
@@ -1075,7 +1075,7 @@ U 7 1 6169ABA8
 P 10300 4700
 F 0 "U6" H 10300 5017 50  0000 C CNN
 F 1 "74LS244_Split" H 10300 4926 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10300 4700 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10300 4700 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10300 4700 50  0001 C CNN
 	7    10300 4700
 	1    0    0    -1  
@@ -1086,7 +1086,7 @@ U 8 1 6169B5EB
 P 10250 2700
 F 0 "U6" H 10250 3017 50  0000 C CNN
 F 1 "74LS244_Split" H 10250 2926 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10250 2700 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10250 2700 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10250 2700 50  0001 C CNN
 	8    10250 2700
 	1    0    0    -1  
@@ -1097,7 +1097,7 @@ U 9 1 6169C094
 P 10350 6250
 F 0 "U6" V 9983 6250 50  0000 C CNN
 F 1 "74LS244_Split" V 10074 6250 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 10350 6250 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 10350 6250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 10350 6250 50  0001 C CNN
 	9    10350 6250
 	0    1    1    0   
@@ -1166,7 +1166,7 @@ U 1 1 618AAA15
 P 3250 6800
 F 0 "U7" H 3250 7117 50  0000 C CNN
 F 1 "74LS244_Split" H 3250 7026 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 3250 6800 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 3250 6800 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 3250 6800 50  0001 C CNN
 	1    3250 6800
 	1    0    0    -1  
@@ -1209,7 +1209,7 @@ U 9 1 61AEED0F
 P 9250 6250
 F 0 "U7" V 8883 6250 50  0000 C CNN
 F 1 "74LS244_Split" V 8974 6250 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 9250 6250 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 9250 6250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 9250 6250 50  0001 C CNN
 	9    9250 6250
 	0    1    1    0   
@@ -1543,7 +1543,7 @@ U 5 1 616B72F8
 P 3250 5500
 F 0 "U7" H 3250 5817 50  0000 C CNN
 F 1 "74LS244_Split" H 3250 5726 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 3250 5500 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 3250 5500 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 3250 5500 50  0001 C CNN
 	5    3250 5500
 	1    0    0    -1  
@@ -1638,7 +1638,7 @@ U 4 1 620E5311
 P 3250 6200
 F 0 "U7" H 3250 6517 50  0000 C CNN
 F 1 "74LS244_Split" H 3250 6426 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 3250 6200 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 3250 6200 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 3250 6200 50  0001 C CNN
 	4    3250 6200
 	1    0    0    -1  
@@ -1649,7 +1649,7 @@ U 6 1 620EF744
 P 2950 2750
 F 0 "U7" H 2950 3067 50  0000 C CNN
 F 1 "74LS244_Split" H 2950 2976 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 2950 2750 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 2950 2750 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 2950 2750 50  0001 C CNN
 	6    2950 2750
 	1    0    0    -1  
@@ -1660,7 +1660,7 @@ U 7 1 6212508C
 P 2950 1750
 F 0 "U7" H 2950 2067 50  0000 C CNN
 F 1 "74LS244_Split" H 2950 1976 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 2950 1750 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 2950 1750 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 2950 1750 50  0001 C CNN
 	7    2950 1750
 	1    0    0    -1  
@@ -1671,7 +1671,7 @@ U 8 1 62126DF0
 P 2950 2250
 F 0 "U7" H 2950 2567 50  0000 C CNN
 F 1 "74LS244_Split" H 2950 2476 50  0000 C CNN
-F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 2950 2250 50  0001 C CNN
+F 2 "beeb:beeb_SO-20_5.3x12.6mm_P1.27mm" H 2950 2250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74ls244.pdf" H 2950 2250 50  0001 C CNN
 	8    2950 2250
 	1    0    0    -1  
@@ -1722,7 +1722,7 @@ U 1 1 61BFB3F8
 P 5450 7250
 F 0 "U8" H 5450 7617 50  0000 C CNN
 F 1 "LM2903" H 5450 7526 50  0000 C CNN
-F 2 "Package_SO:SOP-8_5.28x5.23mm_P1.27mm" H 5450 7250 50  0001 C CNN
+F 2 "Package_SO:SOP-8_3.76x4.96mm_P1.27mm" H 5450 7250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 5450 7250 50  0001 C CNN
 	1    5450 7250
 	1    0    0    -1  
@@ -1780,7 +1780,7 @@ U 1 1 61BE02D1
 P 3200 1050
 F 0 "Q1" H 3391 1096 50  0000 L CNN
 F 1 "BC337" H 3391 1005 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3400 975 50  0001 L CIN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 3400 975 50  0001 L CIN
 F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf" H 3200 1050 50  0001 L CNN
 	1    3200 1050
 	-1   0    0    -1  
@@ -1823,4 +1823,51 @@ Wire Wire Line
 	4650 6700 4650 6800
 Wire Wire Line
 	4650 7500 4650 7600
+$Comp
+L Comparator:LM2903 U8
+U 3 1 61CE6085
+P 4150 7150
+F 0 "U8" V 3950 7150 50  0000 C CNN
+F 1 "LM2903" V 4150 7150 50  0000 C CNN
+F 2 "Package_SO:SOP-8_3.76x4.96mm_P1.27mm" H 4150 7150 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 4150 7150 50  0001 C CNN
+	3    4150 7150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0115
+U 1 1 61CE8FEC
+P 4050 7450
+F 0 "#PWR0115" H 4050 7200 50  0001 C CNN
+F 1 "GND" H 4055 7277 50  0000 C CNN
+F 2 "" H 4050 7450 50  0001 C CNN
+F 3 "" H 4050 7450 50  0001 C CNN
+	1    4050 7450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0117
+U 1 1 61CE9241
+P 4050 6850
+F 0 "#PWR0117" H 4050 6700 50  0001 C CNN
+F 1 "+5V" H 4065 7023 50  0000 C CNN
+F 2 "" H 4050 6850 50  0001 C CNN
+F 3 "" H 4050 6850 50  0001 C CNN
+	1    4050 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP2
+U 1 1 61D2DA1F
+P 10950 2050
+F 0 "TP2" H 10900 2150 50  0000 R CNN
+F 1 "TP_CLKBUF" H 11100 2300 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 11150 2050 50  0001 C CNN
+F 3 "~" H 11150 2050 50  0001 C CNN
+	1    10950 2050
+	-1   0    0    1   
+$EndComp
+Connection ~ 10950 2050
+Wire Wire Line
+	10950 2050 11200 2050
 $EndSCHEMATC
