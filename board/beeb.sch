@@ -203,17 +203,6 @@ F 3 "" H 1550 3000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LED:HDSP-4830_2 BAR1
-U 1 1 60D5B5EC
-P 8200 1700
-F 0 "BAR1" H 8200 2367 50  0000 C CNN
-F 1 "HDSP-4830_2" H 8200 2276 50  0000 C CNN
-F 2 "Display:HDSP-4830" H 8200 900 50  0001 C CNN
-F 3 "https://docs.broadcom.com/docs/AV02-1798EN" H 6200 1900 50  0001 C CNN
-	1    8200 1700
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C1
 U 1 1 60D602A6
 P 4850 850
@@ -411,226 +400,6 @@ Wire Wire Line
 Connection ~ 5250 550 
 Wire Wire Line
 	5250 550  5150 550 
-$Comp
-L power:GND #PWR0101
-U 1 1 60E39981
-P 9250 4350
-F 0 "#PWR0101" H 9250 4100 50  0001 C CNN
-F 1 "GND" H 9255 4177 50  0000 C CNN
-F 2 "" H 9250 4350 50  0001 C CNN
-F 3 "" H 9250 4350 50  0001 C CNN
-	1    9250 4350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9250 4350 9250 4300
-Wire Wire Line
-	9250 3600 9200 3600
-Wire Wire Line
-	9200 3700 9250 3700
-Connection ~ 9250 3700
-Wire Wire Line
-	9250 3700 9250 3600
-Wire Wire Line
-	9200 3800 9250 3800
-Connection ~ 9250 3800
-Wire Wire Line
-	9250 3800 9250 3700
-Wire Wire Line
-	9200 3900 9250 3900
-Connection ~ 9250 3900
-Wire Wire Line
-	9250 3900 9250 3800
-Wire Wire Line
-	9200 4000 9250 4000
-Connection ~ 9250 4000
-Wire Wire Line
-	9250 4000 9250 3900
-Wire Wire Line
-	9200 4100 9250 4100
-Connection ~ 9250 4100
-Wire Wire Line
-	9250 4100 9250 4000
-Wire Wire Line
-	9250 4200 9200 4200
-Connection ~ 9250 4200
-Wire Wire Line
-	9250 4200 9250 4100
-Wire Wire Line
-	9200 4300 9250 4300
-Connection ~ 9250 4300
-Wire Wire Line
-	9250 4300 9250 4200
-$Comp
-L Device:R R1
-U 1 1 60E5841F
-P 8550 1300
-F 0 "R1" V 8343 1300 50  0000 C CNN
-F 1 "R" V 8434 1300 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1300 50  0001 C CNN
-F 3 "~" H 8550 1300 50  0001 C CNN
-	1    8550 1300
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R2
-U 1 1 60E591BA
-P 8550 1400
-F 0 "R2" V 8343 1400 50  0000 C CNN
-F 1 "R" V 8434 1400 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1400 50  0001 C CNN
-F 3 "~" H 8550 1400 50  0001 C CNN
-	1    8550 1400
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R3
-U 1 1 60E59762
-P 8550 1500
-F 0 "R3" V 8343 1500 50  0000 C CNN
-F 1 "R" V 8434 1500 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1500 50  0001 C CNN
-F 3 "~" H 8550 1500 50  0001 C CNN
-	1    8550 1500
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R4
-U 1 1 60E599E6
-P 8550 1600
-F 0 "R4" V 8343 1600 50  0000 C CNN
-F 1 "R" V 8434 1600 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1600 50  0001 C CNN
-F 3 "~" H 8550 1600 50  0001 C CNN
-	1    8550 1600
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R5
-U 1 1 60E59C63
-P 8550 1700
-F 0 "R5" V 8343 1700 50  0000 C CNN
-F 1 "R" V 8434 1700 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1700 50  0001 C CNN
-F 3 "~" H 8550 1700 50  0001 C CNN
-	1    8550 1700
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R6
-U 1 1 60E59DCB
-P 8550 1800
-F 0 "R6" V 8343 1800 50  0000 C CNN
-F 1 "R" V 8434 1800 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1800 50  0001 C CNN
-F 3 "~" H 8550 1800 50  0001 C CNN
-	1    8550 1800
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R7
-U 1 1 60E5A020
-P 8550 1900
-F 0 "R7" V 8343 1900 50  0000 C CNN
-F 1 "R" V 8434 1900 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 1900 50  0001 C CNN
-F 3 "~" H 8550 1900 50  0001 C CNN
-	1    8550 1900
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R8
-U 1 1 60E5A1B2
-P 8550 2000
-F 0 "R8" V 8343 2000 50  0000 C CNN
-F 1 "R" V 8434 2000 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 2000 50  0001 C CNN
-F 3 "~" H 8550 2000 50  0001 C CNN
-	1    8550 2000
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R9
-U 1 1 60E5A2FB
-P 8550 2100
-F 0 "R9" V 8343 2100 50  0000 C CNN
-F 1 "R" V 8434 2100 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 2100 50  0001 C CNN
-F 3 "~" H 8550 2100 50  0001 C CNN
-	1    8550 2100
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R10
-U 1 1 60E5A42F
-P 8550 2200
-F 0 "R10" V 8343 2200 50  0000 C CNN
-F 1 "R" V 8434 2200 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8480 2200 50  0001 C CNN
-F 3 "~" H 8550 2200 50  0001 C CNN
-	1    8550 2200
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR0102
-U 1 1 60E5ADC6
-P 8750 2250
-F 0 "#PWR0102" H 8750 2000 50  0001 C CNN
-F 1 "GND" H 8755 2077 50  0000 C CNN
-F 2 "" H 8750 2250 50  0001 C CNN
-F 3 "" H 8750 2250 50  0001 C CNN
-	1    8750 2250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8700 1300 8750 1300
-Wire Wire Line
-	8700 2200 8750 2200
-Connection ~ 8750 2200
-Wire Wire Line
-	8750 2200 8750 2250
-Wire Wire Line
-	8700 2100 8750 2100
-Connection ~ 8750 2100
-Wire Wire Line
-	8750 2100 8750 2200
-Wire Wire Line
-	8700 2000 8750 2000
-Connection ~ 8750 2000
-Wire Wire Line
-	8750 2000 8750 2100
-Wire Wire Line
-	8700 1900 8750 1900
-Connection ~ 8750 1900
-Wire Wire Line
-	8750 1900 8750 2000
-Wire Wire Line
-	8750 1800 8700 1800
-Connection ~ 8750 1800
-Wire Wire Line
-	8750 1800 8750 1900
-Wire Wire Line
-	8700 1700 8750 1700
-Connection ~ 8750 1700
-Wire Wire Line
-	8750 1700 8750 1800
-Wire Wire Line
-	8700 1600 8750 1600
-Connection ~ 8750 1600
-Wire Wire Line
-	8750 1600 8750 1700
-Wire Wire Line
-	8750 1400 8700 1400
-Wire Wire Line
-	8750 1300 8750 1400
-Wire Wire Line
-	8750 1400 8750 1500
-Connection ~ 8750 1400
-Wire Wire Line
-	8700 1500 8750 1500
-Connection ~ 8750 1500
-Wire Wire Line
-	8750 1500 8750 1600
 Wire Wire Line
 	5950 850  6050 850 
 Wire Wire Line
@@ -717,46 +486,6 @@ Connection ~ 5150 1050
 Wire Wire Line
 	5150 1050 5250 1050
 Wire Wire Line
-	8000 1300 7700 1300
-Wire Wire Line
-	7700 1400 8000 1400
-Wire Wire Line
-	8000 1500 7700 1500
-Wire Wire Line
-	8000 1700 7700 1700
-Wire Wire Line
-	7700 1600 8000 1600
-Wire Wire Line
-	7700 1800 8000 1800
-Wire Wire Line
-	8000 1900 7700 1900
-Wire Wire Line
-	7700 2000 8000 2000
-Wire Wire Line
-	7700 2200 8000 2200
-Wire Wire Line
-	8000 2100 7700 2100
-Text Label 7700 1300 0    50   ~ 0
-LED1
-Text Label 7700 1400 0    50   ~ 0
-LED2
-Text Label 7700 1500 0    50   ~ 0
-LED3
-Text Label 7700 1600 0    50   ~ 0
-LED4
-Text Label 7700 1700 0    50   ~ 0
-LED5
-Text Label 7700 1800 0    50   ~ 0
-LED6
-Text Label 7700 1900 0    50   ~ 0
-LED7
-Text Label 7700 2000 0    50   ~ 0
-LED8
-Text Label 7700 2100 0    50   ~ 0
-LED9
-Text Label 7700 2200 0    50   ~ 0
-LED10
-Wire Wire Line
 	7250 2200 7550 2200
 Wire Wire Line
 	7550 2100 7250 2100
@@ -796,12 +525,6 @@ Text Label 7550 1400 2    50   ~ 0
 LED9
 Text Label 7550 1300 2    50   ~ 0
 LED10
-Wire Bus Line
-	7550 2250 7550 1200
-Wire Bus Line
-	7550 1200 7700 1200
-Wire Bus Line
-	7700 1200 7700 2250
 $Comp
 L Mechanical:MountingHole_Pad H1
 U 1 1 60D8B261
@@ -1047,17 +770,6 @@ Text Label 7650 3400 2    50   ~ 0
 COL2_BUF
 Wire Wire Line
 	7650 3400 7250 3400
-$Comp
-L Switch:SW_DIP_x08 SW1
-U 1 1 60D3D186
-P 8900 4000
-F 0 "SW1" H 8900 4667 50  0000 C CNN
-F 1 "SW_DIP_x08" H 8900 3500 50  0000 C CNN
-F 2 "Button_Switch_THT:SW_DIP_SPSTx08_Slide_9.78x22.5mm_W7.62mm_P2.54mm" H 8900 4000 50  0001 C CNN
-F 3 "~" H 8900 4000 50  0001 C CNN
-	1    8900 4000
-	1    0    0    -1  
-$EndComp
 $Comp
 L 74xx:74LS244_Split U6
 U 6 1 61699E03
@@ -1343,200 +1055,8 @@ $EndComp
 Connection ~ 5950 7250
 Wire Wire Line
 	5950 7250 6350 7250
-$Comp
-L Device:R_Small R17
-U 1 1 61E2EEF2
-P 8450 3450
-F 0 "R17" H 8550 3850 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8450 3450 50  0001 C CNN
-F 3 "~" H 8450 3450 50  0001 C CNN
-	1    8450 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R18
-U 1 1 61E30775
-P 8350 3450
-F 0 "R18" H 8450 3750 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8350 3450 50  0001 C CNN
-F 3 "~" H 8350 3450 50  0001 C CNN
-	1    8350 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R19
-U 1 1 61E3087B
-P 8250 3450
-F 0 "R19" H 8350 3950 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8250 3450 50  0001 C CNN
-F 3 "~" H 8250 3450 50  0001 C CNN
-	1    8250 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R20
-U 1 1 61E30A09
-P 8150 3450
-F 0 "R20" H 8250 3850 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8150 3450 50  0001 C CNN
-F 3 "~" H 8150 3450 50  0001 C CNN
-	1    8150 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R21
-U 1 1 61E30AFA
-P 8050 3450
-F 0 "R21" H 8150 3750 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8050 3450 50  0001 C CNN
-F 3 "~" H 8050 3450 50  0001 C CNN
-	1    8050 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R22
-U 1 1 61E30CC8
-P 7950 3450
-F 0 "R22" H 8050 3950 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7950 3450 50  0001 C CNN
-F 3 "~" H 7950 3450 50  0001 C CNN
-	1    7950 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R23
-U 1 1 61E30D9A
-P 7850 3450
-F 0 "R23" H 7950 3850 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7850 3450 50  0001 C CNN
-F 3 "~" H 7850 3450 50  0001 C CNN
-	1    7850 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R24
-U 1 1 61E30EE9
-P 7750 3450
-F 0 "R24" H 7850 3750 50  0000 R CNN
-F 1 "R_Small" H 8250 3450 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7750 3450 50  0001 C CNN
-F 3 "~" H 7750 3450 50  0001 C CNN
-	1    7750 3450
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	8600 3600 7750 3600
-Wire Wire Line
-	7250 3700 7850 3700
-Wire Wire Line
-	8600 3800 7950 3800
-Wire Wire Line
-	7250 3900 8050 3900
-Wire Wire Line
-	8600 4000 8150 4000
-Wire Wire Line
-	7250 4100 8250 4100
-Wire Wire Line
-	8600 4200 8350 4200
-Wire Wire Line
-	7250 4300 8450 4300
-Wire Wire Line
-	8450 3550 8450 4300
-Connection ~ 7750 3600
-Wire Wire Line
-	7750 3600 7250 3600
-Wire Wire Line
-	8350 3550 8350 4200
-Connection ~ 7850 3700
-Wire Wire Line
-	7850 3700 8600 3700
-Wire Wire Line
-	8250 3550 8250 4100
-Connection ~ 7950 3800
-Wire Wire Line
-	7950 3800 7250 3800
-Wire Wire Line
-	8150 3550 8150 4000
-Connection ~ 8050 3900
-Wire Wire Line
-	8050 3900 8600 3900
-Wire Wire Line
-	8050 3550 8050 3900
-Connection ~ 8150 4000
-Wire Wire Line
-	8150 4000 7250 4000
-Wire Wire Line
-	7950 3550 7950 3800
-Connection ~ 8250 4100
-Wire Wire Line
-	8250 4100 8600 4100
-Wire Wire Line
-	7850 3550 7850 3700
-Connection ~ 8350 4200
-Wire Wire Line
-	8350 4200 7250 4200
-Wire Wire Line
-	7750 3550 7750 3600
-Connection ~ 8450 4300
-Wire Wire Line
-	8450 4300 8600 4300
-Wire Wire Line
-	7750 3350 7750 3200
-Wire Wire Line
-	8450 3200 8450 3350
-Wire Wire Line
-	8350 3350 8350 3200
-Connection ~ 8350 3200
-Wire Wire Line
-	8350 3200 8450 3200
-Wire Wire Line
-	8250 3200 8250 3350
-Connection ~ 8250 3200
-Wire Wire Line
-	8250 3200 8350 3200
-Wire Wire Line
-	8150 3350 8150 3200
-Connection ~ 8150 3200
-Wire Wire Line
-	8150 3200 8250 3200
-Wire Wire Line
-	8050 3200 8050 3350
-Connection ~ 8050 3200
-Wire Wire Line
-	8050 3200 8150 3200
-Wire Wire Line
-	7950 3350 7950 3200
-Connection ~ 7950 3200
-Wire Wire Line
-	7950 3200 8050 3200
-Wire Wire Line
-	7850 3200 7850 3350
-Wire Wire Line
-	7950 3200 7850 3200
-Connection ~ 7850 3200
-Wire Wire Line
-	7850 3200 7750 3200
-$Comp
-L power:+3V3 #PWR0127
-U 1 1 61FFAC08
-P 7750 2950
-F 0 "#PWR0127" H 7750 2800 50  0001 C CNN
-F 1 "+3V3" H 7765 3123 50  0000 C CNN
-F 2 "" H 7750 2950 50  0001 C CNN
-F 3 "" H 7750 2950 50  0001 C CNN
-	1    7750 2950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7750 2950 7750 3200
-Connection ~ 7750 3200
+	7250 4300 7900 4300
 $Comp
 L 74xx:74LS244_Split U7
 U 5 1 616B72F8
@@ -1732,7 +1252,7 @@ L Connector:Conn_01x09_Male J1
 U 1 1 61A95B3F
 P 3650 4200
 F 0 "J1" H 3758 4781 50  0000 C CNN
-F 1 "Conn_01x09_Male" H 3758 4690 50  0000 C CNN
+F 1 "Conn_01x09_Male" V 3500 4200 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x09_P2.54mm_Vertical" H 3650 4200 50  0001 C CNN
 F 3 "~" H 3650 4200 50  0001 C CNN
 	1    3650 4200
@@ -1870,4 +1390,435 @@ $EndComp
 Connection ~ 10950 2050
 Wire Wire Line
 	10950 2050 11200 2050
+$Comp
+L power:GND #PWR0101
+U 1 1 60E39981
+P 8200 5100
+F 0 "#PWR0101" H 8200 4850 50  0001 C CNN
+F 1 "GND" H 8205 4927 50  0000 C CNN
+F 2 "" H 8200 5100 50  0001 C CNN
+F 3 "" H 8200 5100 50  0001 C CNN
+	1    8200 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8600 5100 8600 5050
+Wire Wire Line
+	8500 5050 8500 5100
+Connection ~ 8500 5100
+Wire Wire Line
+	8500 5100 8600 5100
+Wire Wire Line
+	8400 5050 8400 5100
+Connection ~ 8400 5100
+Wire Wire Line
+	8400 5100 8500 5100
+Wire Wire Line
+	8300 5050 8300 5100
+Connection ~ 8300 5100
+Wire Wire Line
+	8300 5100 8400 5100
+Wire Wire Line
+	8200 5050 8200 5100
+Connection ~ 8200 5100
+Wire Wire Line
+	8200 5100 8300 5100
+Wire Wire Line
+	8100 5050 8100 5100
+Connection ~ 8100 5100
+Wire Wire Line
+	8100 5100 8200 5100
+Wire Wire Line
+	8000 5100 8000 5050
+Connection ~ 8000 5100
+Wire Wire Line
+	8000 5100 8100 5100
+Wire Wire Line
+	7900 5050 7900 5100
+Wire Wire Line
+	7900 5100 8000 5100
+$Comp
+L Switch:SW_DIP_x08 SW1
+U 1 1 60D3D186
+P 8200 4750
+F 0 "SW1" H 8200 5417 50  0000 C CNN
+F 1 "SW_DIP_x08" V 8200 4100 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_DIP_SPSTx08_Slide_9.78x22.5mm_W7.62mm_P2.54mm" H 8200 4750 50  0001 C CNN
+F 3 "~" H 8200 4750 50  0001 C CNN
+	1    8200 4750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8200 4450 8200 4000
+Wire Wire Line
+	8000 4450 8000 4200
+Wire Wire Line
+	8100 4100 8100 4450
+Wire Wire Line
+	7900 4300 7900 4450
+Wire Wire Line
+	8300 3900 8300 4450
+Wire Wire Line
+	8600 4450 8600 3600
+Wire Wire Line
+	8500 3700 8500 4450
+Wire Wire Line
+	8400 4450 8400 3800
+$Comp
+L Device:R_Small R17
+U 1 1 61E2EEF2
+P 8600 3400
+F 0 "R17" H 8700 3800 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8600 3400 50  0001 C CNN
+F 3 "~" H 8600 3400 50  0001 C CNN
+	1    8600 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R18
+U 1 1 61E30775
+P 8500 3400
+F 0 "R18" H 8600 3700 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8500 3400 50  0001 C CNN
+F 3 "~" H 8500 3400 50  0001 C CNN
+	1    8500 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R19
+U 1 1 61E3087B
+P 8400 3400
+F 0 "R19" H 8500 3900 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8400 3400 50  0001 C CNN
+F 3 "~" H 8400 3400 50  0001 C CNN
+	1    8400 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R20
+U 1 1 61E30A09
+P 8300 3400
+F 0 "R20" H 8400 3800 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8300 3400 50  0001 C CNN
+F 3 "~" H 8300 3400 50  0001 C CNN
+	1    8300 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R21
+U 1 1 61E30AFA
+P 8200 3400
+F 0 "R21" H 8300 3700 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8200 3400 50  0001 C CNN
+F 3 "~" H 8200 3400 50  0001 C CNN
+	1    8200 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R22
+U 1 1 61E30CC8
+P 8100 3400
+F 0 "R22" H 8200 3900 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8100 3400 50  0001 C CNN
+F 3 "~" H 8100 3400 50  0001 C CNN
+	1    8100 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R23
+U 1 1 61E30D9A
+P 8000 3400
+F 0 "R23" H 8100 3800 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 8000 3400 50  0001 C CNN
+F 3 "~" H 8000 3400 50  0001 C CNN
+	1    8000 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R24
+U 1 1 61E30EE9
+P 7900 3400
+F 0 "R24" H 8000 3700 50  0000 R CNN
+F 1 "10K" H 8400 3400 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7900 3400 50  0001 C CNN
+F 3 "~" H 7900 3400 50  0001 C CNN
+	1    7900 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7900 3300 7900 3150
+Connection ~ 7900 3150
+Wire Wire Line
+	8600 3150 8600 3300
+Wire Wire Line
+	8500 3300 8500 3150
+Connection ~ 8500 3150
+Wire Wire Line
+	8500 3150 8600 3150
+Wire Wire Line
+	8400 3150 8500 3150
+Wire Wire Line
+	8400 3150 8400 3300
+Connection ~ 8400 3150
+Wire Wire Line
+	8300 3150 8400 3150
+Wire Wire Line
+	8300 3300 8300 3150
+Connection ~ 8300 3150
+Wire Wire Line
+	8200 3150 8300 3150
+Wire Wire Line
+	8200 3150 8200 3300
+Connection ~ 8200 3150
+Wire Wire Line
+	8100 3150 8200 3150
+Wire Wire Line
+	8100 3300 8100 3150
+Connection ~ 8100 3150
+Wire Wire Line
+	8100 3150 8000 3150
+Wire Wire Line
+	8000 3150 8000 3300
+Connection ~ 8000 3150
+Wire Wire Line
+	8000 3150 7900 3150
+$Comp
+L power:+3V3 #PWR0127
+U 1 1 61FFAC08
+P 7900 2900
+F 0 "#PWR0127" H 7900 2750 50  0001 C CNN
+F 1 "+3V3" H 7915 3073 50  0000 C CNN
+F 2 "" H 7900 2900 50  0001 C CNN
+F 3 "" H 7900 2900 50  0001 C CNN
+	1    7900 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7900 2900 7900 3150
+Wire Wire Line
+	7250 3600 8600 3600
+Wire Wire Line
+	7250 3700 8500 3700
+Wire Wire Line
+	7250 3800 8400 3800
+Wire Wire Line
+	7250 3900 8300 3900
+Wire Wire Line
+	7250 4000 8200 4000
+Wire Wire Line
+	7250 4100 8100 4100
+Wire Wire Line
+	7250 4200 8000 4200
+Wire Wire Line
+	7900 3500 7900 4300
+Connection ~ 7900 4300
+Wire Wire Line
+	8000 3500 8000 4200
+Connection ~ 8000 4200
+Wire Wire Line
+	8100 3500 8100 4100
+Connection ~ 8100 4100
+Wire Wire Line
+	8200 3500 8200 4000
+Connection ~ 8200 4000
+Wire Wire Line
+	8300 3500 8300 3900
+Connection ~ 8300 3900
+Wire Wire Line
+	8400 3500 8400 3800
+Connection ~ 8400 3800
+Wire Wire Line
+	8500 3500 8500 3700
+Connection ~ 8500 3700
+Wire Wire Line
+	8600 3500 8600 3600
+Connection ~ 8600 3600
+$Comp
+L LED:HDSP-4830_2 BAR1
+U 1 1 60D5B5EC
+P 7750 1800
+F 0 "BAR1" H 7750 2467 50  0000 C CNN
+F 1 "HDSP-4830_2" H 7750 2376 50  0000 C CNN
+F 2 "Display:HDSP-4830" H 7750 1000 50  0001 C CNN
+F 3 "https://docs.broadcom.com/docs/AV02-1798EN" H 5750 2000 50  0001 C CNN
+	1    7750 1800
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	8300 1300 8300 1400
+Wire Wire Line
+	8000 2000 7950 2000
+Wire Wire Line
+	7950 2100 8000 2100
+Wire Wire Line
+	8000 1900 7950 1900
+Wire Wire Line
+	8000 1800 7950 1800
+Wire Wire Line
+	7950 1700 8000 1700
+Wire Wire Line
+	8000 1600 7950 1600
+Wire Wire Line
+	8000 1500 7950 1500
+Wire Wire Line
+	8000 1400 7950 1400
+Wire Wire Line
+	8000 1300 7950 1300
+Wire Wire Line
+	8000 2200 7950 2200
+$Comp
+L Device:R R10
+U 1 1 60E5A42F
+P 8150 1300
+F 0 "R10" V 8150 1550 50  0000 C CNN
+F 1 "10K" V 8250 1300 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1300 50  0001 C CNN
+F 3 "~" H 8150 1300 50  0001 C CNN
+	1    8150 1300
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R9
+U 1 1 60E5A2FB
+P 8150 1400
+F 0 "R9" V 8150 1650 50  0000 C CNN
+F 1 "10K" V 8350 1400 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1400 50  0001 C CNN
+F 3 "~" H 8150 1400 50  0001 C CNN
+	1    8150 1400
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R7
+U 1 1 60E5A020
+P 8150 1600
+F 0 "R7" V 8150 1850 50  0000 C CNN
+F 1 "10K" V 8550 1600 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1600 50  0001 C CNN
+F 3 "~" H 8150 1600 50  0001 C CNN
+	1    8150 1600
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R6
+U 1 1 60E59DCB
+P 8150 1700
+F 0 "R6" V 8150 1950 50  0000 C CNN
+F 1 "10K" V 8650 1700 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1700 50  0001 C CNN
+F 3 "~" H 8150 1700 50  0001 C CNN
+	1    8150 1700
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 60E59C63
+P 8150 1800
+F 0 "R5" V 8150 2050 50  0000 C CNN
+F 1 "10K" V 8750 1800 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1800 50  0001 C CNN
+F 3 "~" H 8150 1800 50  0001 C CNN
+	1    8150 1800
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 60E599E6
+P 8150 1900
+F 0 "R4" V 8150 2150 50  0000 C CNN
+F 1 "10K" V 8850 1900 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1900 50  0001 C CNN
+F 3 "~" H 8150 1900 50  0001 C CNN
+	1    8150 1900
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 60E59762
+P 8150 2000
+F 0 "R3" V 8150 2250 50  0000 C CNN
+F 1 "10K" V 8950 2000 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 2000 50  0001 C CNN
+F 3 "~" H 8150 2000 50  0001 C CNN
+	1    8150 2000
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 60E591BA
+P 8150 2100
+F 0 "R2" V 8150 2350 50  0000 C CNN
+F 1 "10K" V 9050 2100 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 2100 50  0001 C CNN
+F 3 "~" H 8150 2100 50  0001 C CNN
+	1    8150 2100
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 60E5841F
+P 8150 2200
+F 0 "R1" V 8150 2450 50  0000 C CNN
+F 1 "10K" V 9150 2200 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 2200 50  0001 C CNN
+F 3 "~" H 8150 2200 50  0001 C CNN
+	1    8150 2200
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 60E5ADC6
+P 8300 2250
+F 0 "#PWR0102" H 8300 2000 50  0001 C CNN
+F 1 "GND" H 8305 2077 50  0000 C CNN
+F 2 "" H 8300 2250 50  0001 C CNN
+F 3 "" H 8300 2250 50  0001 C CNN
+	1    8300 2250
+	-1   0    0    -1  
+$EndComp
+Connection ~ 8300 1400
+Connection ~ 8300 1600
+Wire Wire Line
+	8300 1600 8300 1700
+Connection ~ 8300 1700
+Wire Wire Line
+	8300 1700 8300 1800
+Connection ~ 8300 1800
+Wire Wire Line
+	8300 1800 8300 1900
+Connection ~ 8300 1900
+Wire Wire Line
+	8300 1900 8300 2000
+Connection ~ 8300 2000
+Wire Wire Line
+	8300 2000 8300 2100
+Connection ~ 8300 2100
+Wire Wire Line
+	8300 2100 8300 2200
+Connection ~ 8300 2200
+Wire Wire Line
+	8300 2200 8300 2250
+Connection ~ 8300 1500
+Wire Wire Line
+	8300 1500 8300 1600
+Wire Wire Line
+	8300 1400 8300 1500
+$Comp
+L Device:R R8
+U 1 1 60E5A1B2
+P 8150 1500
+F 0 "R8" V 8150 1750 50  0000 C CNN
+F 1 "10K" V 8450 1500 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 8080 1500 50  0001 C CNN
+F 3 "~" H 8150 1500 50  0001 C CNN
+	1    8150 1500
+	0    1    -1   0   
+$EndComp
 $EndSCHEMATC
