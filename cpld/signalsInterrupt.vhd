@@ -79,6 +79,7 @@ BEGIN
 		
 		-- Now idle the line, and then press a key.
 		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;
+--		wait for 10ns;	-- adjust to prevent X's in simulation (they're dealt with in synthesis I think!)
 		work.testVectors.ps2_keydown_spacebar(ps2_clk, ps2_data);
 
 		-- We should see an interrupt within 16 clock cycles.

@@ -1,25 +1,24 @@
 NET "beeb_clk" TNM_NET = CLK1MHZ;
 TIMESPEC TS_CLK_1Mhz = PERIOD "CLK1MHZ" 1000ns;
-#NET "startupOptions<6>" TNM_NET = CLK50MHZ;
-#TIMESPEC TS_CLK_50Mhz = PERIOD "CLK50MHZ" 20ns;
 
 NET "beeb_clk"       LOC =  "PIN22";
 NET "CB"             LOC =  "PIN81";
 NET "COL<0>"         LOC =  "PIN89";
 NET "COL<1>"         LOC =  "PIN90";
-NET "COL<2>"         LOC =  "PIN91";
-NET "COL<3>"         LOC =  "PIN58";
+NET "COL<2>"         LOC =  "PIN97";
+NET "COL<3>"         LOC =  "PIN87";
 NET "ROW<0>"         LOC =  "PIN82";
 NET "ROW<1>"         LOC =  "PIN85";
-NET "ROW<2>"         LOC =  "PIN86";	# Moved to 97 on new board
+NET "ROW<2>"         LOC =  "PIN86";
 NET "W"              LOC =  "PIN12";
-NET "W_EN"           LOC =  "PIN49";	# Moved on new board
+NET "W_EN"           LOC =  "PIN13";
 NET "CA2"            LOC =  "PIN93";
+NET "RST"            LOC =  "PIN71";
 
-NET "ps2_clk"        LOC =  "PIN3";		# moved to 25 on new board
-NET "ps2_data"       LOC =  "PIN4";		# moved to 24 on new board
+NET "ps2_clk"        LOC =  "PIN25";
+NET "ps2_data"       LOC =  "PIN24";
 
-#NET "dbgleds<0>"     LOC =  "PIN49";
+NET "dbgleds<0>"     LOC =  "PIN49";
 NET "dbgleds<1>"     LOC =  "PIN46";
 NET "dbgleds<2>"     LOC =  "PIN43";
 NET "dbgleds<3>"     LOC =  "PIN42";
@@ -36,5 +35,5 @@ NET "startupOptions<2>"     LOC =  "S:PIN53";
 NET "startupOptions<3>"     LOC =  "S:PIN54";
 NET "startupOptions<4>"     LOC =  "S:PIN55";
 NET "startupOptions<5>"     LOC =  "S:PIN56";
-NET "startupOptions<6>"     LOC =  "S:PIN87";	# the 'unused' bit
+NET "startupOptions<6>"     LOC =  "S:PIN58";
 NET "startupOptions<7>"     LOC =  "S:PIN59";

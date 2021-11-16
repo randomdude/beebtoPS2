@@ -55,27 +55,29 @@ BEGIN
 		wait for beeb_clk_period * 1024;
 		
 		-- Send a space, as captured from keyboard hardware
-		work.testVectors.ps2_synthetic_keydown_spacebar(ps2_clk, ps2_data);
+		work.testVectors.ps2_synthetic_keydown_digit9(ps2_clk, ps2_data);
 
+		wait for beeb_clk_period * 2;
+		wait for beeb_clk_period * 2;
 		wait for beeb_clk_period * 2;
 
 		-- We should see this key pressed.
-		assert beeb_keydown = '1' severity FAILURE;
-		assert beeb_row = "110" severity FAILURE;
-		assert beeb_col = "0010" severity FAILURE;
+		assert beeb_keydown = '1' report "key not reported as pressed" severity FAILURE;
+		assert beeb_row = "010" report "Wrong row for pressed key" severity FAILURE;
+		assert beeb_col = "0101" report "wrong column for pressed key" severity FAILURE;
 
 		-- Wait for a while, making sure the key is nor released prematurely
 		wait for beeb_clk_period * 100;
-		assert beeb_keydown = '1' severity FAILURE;
-		assert beeb_row = "110" severity FAILURE;
-		assert beeb_col = "0010" severity FAILURE;
+		assert beeb_keydown = '1' report "key reported as not-pressed prematurely" severity FAILURE;
+		assert beeb_row = "010" report "row changed prematurely" severity FAILURE;
+		assert beeb_col = "0101" report "column changed prematurely" severity FAILURE;
 
 		-- Now release the key.
 		work.testVectors.ps2_synthetic_keyup_spacebar(ps2_clk, ps2_data);
 		wait for beeb_clk_period * 1024;
 
 		-- the keydown signal should now be deasserted.
-		assert beeb_keydown = '0' severity FAILURE;
+		assert beeb_keydown = '0' report "Key not reported as released" severity FAILURE;
 
 
 		report "all OK" severity FAILURE;

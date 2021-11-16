@@ -16,6 +16,7 @@ ARCHITECTURE behavior OF all_keypress IS
 			COL : IN  std_logic_vector(3 downto 0);
 			CA2 : OUT  std_logic;
 			W : OUT  std_logic;
+			W_EN: out STD_LOGIC;
 			CB : IN  std_logic;
 			startupOptions: in STD_LOGIC_VECTOR(7 downto 0);
 
@@ -35,6 +36,7 @@ ARCHITECTURE behavior OF all_keypress IS
 	signal ps2_data: std_logic := '0';
 	signal CA2 : std_logic;
 	signal W : std_logic;
+	signal W_EN : std_logic;
 
 	constant beeb_clk_period : time := 955 ns;
  
@@ -43,7 +45,7 @@ BEGIN
  
 	uut: kb PORT MAP (
 		ROW => ROW, COL => COL,
-		CA2 => CA2, W => W,
+		CA2 => CA2, W => W, W_EN => W_EN,
 		CB => CB,
 		startupOptions => startupOptions,
 		beeb_clk => beeb_clk,
@@ -73,11 +75,11 @@ BEGIN
 		CB <= '1';
 		wait for beeb_clk_period * 2;
 		-- No keys down means that CA2 should be deasserted.
-		assert CA2 = '0' severity FAILURE; 
+		assert CA2 = '0' report "CA asserted when no keys pressed" severity FAILURE; 
 		
 		-- Now idle the line, and then press a key.
 		ps2_clk <= '1'; ps2_data <= '1'; wait for 100 us;	
-		work.testVectors.ps2_keydown_spacebar(ps2_clk, ps2_data);
+		work.testVectors.ps2_synthetic_keydown_digit9(ps2_clk, ps2_data);
 
 		-- We should see an interrupt within 16 clock cycles.
 		sawInterrupt <= 0;
@@ -87,11 +89,27 @@ BEGIN
 				sawInterrupt <= sawInterrupt + 1;
 			end if;
 		end loop;
-		assert sawInterrupt = 1 severity FAILURE;
+		assert sawInterrupt = 1 report "interrupt not asserted" severity FAILURE;
 		
 		-- Now interrogate the uut from the BBC-micro side.
-		--CB <= '0';
-		-- todo
+		-- with CB low, we should see CA2 go high when we observe column 2.
+		CB <= '0';
+		COL <= x"0";
+		wait for beeb_clk_period;
+		wait for beeb_clk_period;
+		assert ca2 = '0' report "beeb did not deassert CA2 when CB=0 and a non-0b0010 row was present" severity FAILURE;
+		COL <= x"5";
+		wait for beeb_clk_period;
+		assert ca2 = '1' report "beeb did not assert CA2 when CB=0 and the correct 0b0010 row was present" severity FAILURE ;
+
+		-- Now make sure 'W' is asserted when the correct row is selected.
+		assert W_EN = '0' report "beeb asserted W when non-selected row present" severity FAILURE ;
+		wait for beeb_clk_period;
+		CB <= '1';
+		ROW <= b"010";
+		wait for beeb_clk_period;
+		assert W_EN = '1' report "beeb did not assert W when selected row present" severity FAILURE ;
+
 		
 		report "all OK" severity FAILURE;
 	end process;

@@ -5,6 +5,7 @@ package testVectors is
 	procedure ps2_keydown_spacebar (signal ps2_clk: out std_logic; signal ps2_data: out std_logic);
 	procedure ps2_synthetic_keydown_spacebar (signal ps2_clk: out std_logic; signal ps2_data: out std_logic);
 	procedure ps2_synthetic_keyup_spacebar (signal ps2_clk: out std_logic; signal ps2_data: out std_logic);
+	procedure ps2_synthetic_keydown_digit9 (signal ps2_clk: out std_logic; signal ps2_data: out std_logic);
 end testVectors;
 
 package body testVectors is
@@ -118,5 +119,27 @@ package body testVectors is
 		-- Stop bit
 		wait for 2400.000000 ns;  ps2_data <= '1'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';    
   end ps2_synthetic_keyup_spacebar;
+  
+  procedure ps2_synthetic_keydown_digit9 (signal ps2_clk: out std_logic; signal ps2_data: out std_logic) is
+	begin
+		-- Send a '9', as calculated from the spec
+		-- start bit
+		wait for 4490.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		-- data bits - 0x46, 0b01000110
+		wait for 2300.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '1'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '1'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '1'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		wait for 2300.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		
+		-- Parity
+		wait for 2300.000000 ns;  ps2_data <= '0'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';
+		
+		-- Stop bit
+		wait for 2400.000000 ns;  ps2_data <= '1'; wait for 1500.000000 ns;  ps2_clk <= '0'; wait for 3900.000000 ns;  ps2_clk <= '1';    
+  end ps2_synthetic_keydown_digit9;  
   
 end testVectors;
